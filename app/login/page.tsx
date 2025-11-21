@@ -1,9 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -50,12 +52,22 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 px-4">
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 px-4 dark:from-slate-950 dark:to-slate-900">
+      <div className="absolute top-6 right-6">
+        <ThemeToggle />
+      </div>
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-primary-600 mb-2">Better Direct</h1>
-            <p className="text-gray-600">Client Ordering Portal</p>
+        <div className="bg-white rounded-2xl shadow-xl p-8 dark:bg-slate-900 dark:shadow-slate-950/60">
+          <div className="text-center mb-8 flex flex-col items-center">
+            <Image
+              src="/logo.svg"
+              alt="Better Direct"
+              width={180}
+              height={60}
+              style={{ width: '180px', height: '60px' }}
+              priority
+            />
+            <p className="text-gray-600 mt-3 dark:text-gray-300">Client Ordering Portal</p>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -88,7 +100,7 @@ export default function LoginPage() {
             </Button>
           </form>
           
-          <div className="mt-6 text-center text-sm text-gray-500">
+          <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
             <p>Demo: Use any email and password to login</p>
           </div>
         </div>

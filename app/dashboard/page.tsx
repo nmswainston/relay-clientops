@@ -29,13 +29,13 @@ export default function DashboardPage() {
   const ordersWithTracking = recentOrders.filter(order => order.trackingNumber);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
       <Header />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">Dashboard</h2>
-          <p className="text-gray-600 mt-2">Manage your orders and get quick access to key features</p>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h2>
+          <p className="text-gray-600 mt-2 dark:text-gray-300">Manage your orders and get quick access to key features</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -49,9 +49,9 @@ export default function DashboardPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900">Quick Reorder</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Quick Reorder</h3>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 dark:text-gray-300">
                   Reorder items from your past purchases with just a few clicks
                 </p>
                 <Link href="/orders" className="text-primary-600 font-medium hover:text-primary-700">
@@ -71,9 +71,9 @@ export default function DashboardPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900">Track Orders</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Track Orders</h3>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 dark:text-gray-300">
                   Monitor your shipments in real-time
                 </p>
                 {ordersWithTracking.length > 0 ? (
@@ -89,7 +89,7 @@ export default function DashboardPage() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-500">No active shipments</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">No active shipments</p>
                 )}
               </div>
             </div>
@@ -105,9 +105,9 @@ export default function DashboardPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900">Open Support Ticket</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Open Support Ticket</h3>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 dark:text-gray-300">
                   Need help? Create a support ticket for assistance
                 </p>
                 <button className="text-primary-600 font-medium hover:text-primary-700">
@@ -127,9 +127,9 @@ export default function DashboardPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900">Ask BetterBot</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Ask BetterBot</h3>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 dark:text-gray-300">
                   Get instant answers to your questions about orders and products
                 </p>
                 <button 
@@ -149,36 +149,36 @@ export default function DashboardPage() {
 
         {/* Recent Orders Section */}
         <div className="mt-8">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">Recent Orders</h3>
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4 dark:text-gray-100">Recent Orders</h3>
+          <div className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-slate-900 dark:shadow-slate-950/40">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-800">
+                <thead className="bg-gray-50 dark:bg-slate-900/70">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
                       PO Number
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
                       Date
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
                       Total
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-gray-200 dark:bg-slate-900 dark:divide-slate-800">
                   {recentOrders.map((order) => (
-                    <tr key={order.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <tr key={order.id} className="hover:bg-gray-50 dark:hover:bg-slate-800/70">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                         {order.poNumber}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                         {new Date(order.date).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -191,7 +191,7 @@ export default function DashboardPage() {
                           {order.status.replace('-', ' ')}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                         ${order.total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">

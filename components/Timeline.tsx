@@ -38,16 +38,14 @@ export default function Timeline({ events, currentStatus }: TimelineProps) {
             {index !== statusOrder.length - 1 && (
               <div
                 className={`absolute left-4 top-8 h-full w-0.5 ${
-                  isCompleted ? 'bg-primary-600' : 'bg-gray-300'
+                  isCompleted ? 'bg-primary-600' : 'bg-gray-300 dark:bg-slate-700'
                 }`}
               />
             )}
             <div className="flex items-start">
               <div
                 className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full ${
-                  isCompleted
-                    ? 'bg-primary-600'
-                    : 'bg-gray-300'
+                  isCompleted ? 'bg-primary-600' : 'bg-gray-300 dark:bg-slate-700'
                 }`}
               >
                 {isCompleted && (
@@ -67,22 +65,26 @@ export default function Timeline({ events, currentStatus }: TimelineProps) {
               <div className="ml-6 flex-1">
                 <h3
                   className={`text-sm font-semibold ${
-                    isCurrent ? 'text-primary-600' : isCompleted ? 'text-gray-900' : 'text-gray-500'
+                    isCurrent
+                      ? 'text-primary-600'
+                      : isCompleted
+                        ? 'text-gray-900 dark:text-gray-100'
+                        : 'text-gray-500 dark:text-gray-400'
                   }`}
                 >
                   {statusLabels[status]}
                 </h3>
                 {event && (
                   <>
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
                       {event.description}
                     </p>
                     {event.location && (
-                      <p className="mt-1 text-xs text-gray-500">
+                      <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                         {event.location}
                       </p>
                     )}
-                    <p className="mt-1 text-xs text-gray-500">
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                       {new Date(event.timestamp).toLocaleString('en-US', {
                         month: 'short',
                         day: 'numeric',
@@ -94,7 +96,7 @@ export default function Timeline({ events, currentStatus }: TimelineProps) {
                   </>
                 )}
                 {!event && !isCompleted && (
-                  <p className="mt-1 text-sm text-gray-400">Pending</p>
+                  <p className="mt-1 text-sm text-gray-400 dark:text-gray-500">Pending</p>
                 )}
               </div>
             </div>

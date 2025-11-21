@@ -42,11 +42,11 @@ export default function TrackingPage() {
 
   if (!tracking) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
         <Header />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <p className="text-gray-600">Tracking information not available for this order.</p>
+          <div className="bg-white rounded-lg shadow-md p-6 text-center dark:bg-slate-900 dark:shadow-slate-950/40">
+            <p className="text-gray-600 dark:text-gray-300">Tracking information not available for this order.</p>
             <Link href="/dashboard" className="text-primary-600 hover:text-primary-700 mt-4 inline-block">
               Back to Dashboard
             </Link>
@@ -57,7 +57,7 @@ export default function TrackingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
       <Header />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -69,34 +69,34 @@ export default function TrackingPage() {
             ← Back to Dashboard
           </Link>
           <div className="mt-4">
-            <h2 className="text-3xl font-bold text-gray-900">Order Tracking</h2>
-            <p className="text-gray-600 mt-2">PO Number: {order.poNumber}</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Tracking</h2>
+            <p className="text-gray-600 mt-2 dark:text-gray-300">PO Number: {order.poNumber}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-6">Shipping Timeline</h3>
+            <div className="bg-white rounded-lg shadow-md p-6 dark:bg-slate-900 dark:shadow-slate-950/40">
+              <h3 className="text-lg font-semibold text-gray-900 mb-6 dark:text-gray-100">Shipping Timeline</h3>
               <Timeline events={tracking.events} currentStatus={tracking.currentStatus} />
             </div>
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Shipping Details</h3>
+            <div className="bg-white rounded-lg shadow-md p-6 dark:bg-slate-900 dark:shadow-slate-950/40">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Shipping Details</h3>
               <div className="space-y-3">
                 <div>
-                  <p className="text-sm text-gray-500">Tracking Number</p>
-                  <p className="text-base font-medium text-gray-900">{tracking.trackingNumber}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Tracking Number</p>
+                  <p className="text-base font-medium text-gray-900 dark:text-gray-100">{tracking.trackingNumber}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Carrier</p>
-                  <p className="text-base font-medium text-gray-900">{tracking.carrier}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Carrier</p>
+                  <p className="text-base font-medium text-gray-900 dark:text-gray-100">{tracking.carrier}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Estimated Delivery</p>
-                  <p className="text-base font-medium text-gray-900">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Estimated Delivery</p>
+                  <p className="text-base font-medium text-gray-900 dark:text-gray-100">
                     {new Date(tracking.estimatedDelivery).toLocaleDateString('en-US', {
                       month: 'long',
                       day: 'numeric',
@@ -107,21 +107,21 @@ export default function TrackingPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Shipping Address</h3>
-              <p className="text-sm text-gray-600">{tracking.shippingAddress}</p>
+            <div className="bg-white rounded-lg shadow-md p-6 dark:bg-slate-900 dark:shadow-slate-950/40">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Shipping Address</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">{tracking.shippingAddress}</p>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
+            <div className="bg-white rounded-lg shadow-md p-6 dark:bg-slate-900 dark:shadow-slate-950/40">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Order Summary</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Items</span>
-                  <span className="font-medium text-gray-900">{order.items.length}</span>
+                  <span className="text-gray-600 dark:text-gray-300">Items</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">{order.items.length}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Total</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-gray-600 dark:text-gray-300">Total</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">
                     ${order.total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </span>
                 </div>

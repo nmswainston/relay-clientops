@@ -107,7 +107,7 @@ export default function OrderDetailPage() {
   ).length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
       <Header />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -119,11 +119,11 @@ export default function OrderDetailPage() {
             ← Back to Orders
           </Link>
           <div className="mt-4">
-            <h2 className="text-3xl font-bold text-gray-900">Order Details</h2>
-            <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-gray-600">
-              <span>PO Number: <span className="font-semibold">{order.poNumber}</span></span>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Details</h2>
+            <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-gray-600 dark:text-gray-300">
+              <span>PO Number: <span className="font-semibold text-gray-900 dark:text-gray-100">{order.poNumber}</span></span>
               <span className="hidden sm:inline">•</span>
-              <span>Date: <span className="font-semibold">{new Date(order.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span></span>
+              <span>Date: <span className="font-semibold text-gray-900 dark:text-gray-100">{new Date(order.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span></span>
               <span className="hidden sm:inline">•</span>
               <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
                 order.status === 'delivered' ? 'bg-green-100 text-green-800' :
@@ -137,8 +137,8 @@ export default function OrderDetailPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Items</h3>
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6 dark:bg-slate-900 dark:shadow-slate-950/40">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Items</h3>
           <div className="space-y-4">
             {order.items.map((item) => (
               <OrderItem
@@ -153,13 +153,13 @@ export default function OrderDetailPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-lg shadow-md p-6 dark:bg-slate-900 dark:shadow-slate-950/40">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
             <div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 {selectedCount} item{selectedCount !== 1 ? 's' : ''} selected
               </p>
-              <p className="text-2xl font-bold text-gray-900 mt-2">
+              <p className="text-2xl font-bold text-gray-900 mt-2 dark:text-gray-100">
                 Total: ${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </p>
             </div>
