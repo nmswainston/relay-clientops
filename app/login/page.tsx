@@ -70,6 +70,13 @@ export default function LoginPage() {
             <p className="text-gray-600 mt-3 dark:text-gray-300">Client Ordering Portal</p>
           </div>
           
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Sign in to Better Direct</h1>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              Access your recent orders, track shipments, and reorder in just a few clicks.
+            </p>
+          </div>
+          
           <form onSubmit={handleSubmit} className="space-y-6">
             <Input
               label="Email"
@@ -96,7 +103,7 @@ export default function LoginPage() {
               className="w-full"
               disabled={isLoading}
             >
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {isLoading ? 'Signing in…' : 'Sign In'}
             </Button>
           </form>
           

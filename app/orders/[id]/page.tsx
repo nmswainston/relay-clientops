@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
-import Header from '@/components/Header';
 import Button from '@/components/ui/Button';
 import OrderItem from '@/components/OrderItem';
 import { getOrderById } from '@/lib/mockData';
 import { OrderItem as OrderItemType } from '@/types/order';
+import { useAuthGuard } from '@/hooks/useAuthGuard';
 
 interface SelectedItem {
   item: OrderItemType;
@@ -18,18 +18,14 @@ export default function OrderDetailPage() {
   const router = useRouter();
   const params = useParams();
   const orderId = params.id as string;
+  const isReady = useAuthGuard();
   
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [order, setOrder] = useState(getOrderById(orderId));
   const [selectedItems, setSelectedItems] = useState<Record<string, SelectedItem>>({});
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    const auth = localStorage.getItem('isAuthenticated');
-    if (!auth) {
-      router.push('/login');
-      return;
-    }
-    setIsAuthenticated(true);
+    if (!isReady) return;
 
     if (!order) {
       // Order not found, redirect to orders list
@@ -46,9 +42,9 @@ export default function OrderDetailPage() {
       };
     });
     setSelectedItems(initial);
-  }, [orderId, router, order]);
+  }, [orderId, router, order, isReady]);
 
-  if (!isAuthenticated || !order) {
+  if (!isReady || !order) {
     return null;
   }
 
@@ -94,11 +90,11 @@ export default function OrderDetailPage() {
     }
 
     // Mock reorder - in real app, this would make an API call
-    alert(`Reorder initiated for ${itemsToReorder.length} item(s). This would create a new order in a real application.`);
-    router.push('/dashboard');
+    setSuccess(true);
+    setTimeout(() => setSuccess(false), 4000);
   };
 
-  const total = Object.values(selectedItems)
+  const estimatedTotal = Object.values(selectedItems)
     .filter((selected) => selected.quantity > 0)
     .reduce((sum, selected) => sum + selected.item.price * selected.quantity, 0);
 
@@ -107,11 +103,21 @@ export default function OrderDetailPage() {
   ).length;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
-      <Header />
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
+    <>
+      {success && (
+        <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 dark:bg-green-900/20 dark:border-green-800">
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-green-600 mr-2 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            <p className="text-green-800 font-medium dark:text-green-300">
+              Reorder successful! Your items have been added to cart.
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div className="mb-6">
           <Link
             href="/orders"
             className="text-primary-600 hover:text-primary-700 text-sm font-medium mb-4 inline-block"
@@ -137,44 +143,52 @@ export default function OrderDetailPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6 dark:bg-slate-900 dark:shadow-slate-950/40">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Items</h3>
-          <div className="space-y-4">
-            {order.items.map((item) => (
-              <OrderItem
-                key={item.id}
-                item={item}
-                quantity={selectedItems[item.id]?.quantity || 0}
-                isSelected={isItemSelected(item.id)}
-                onToggle={() => handleToggleItem(item.id)}
-                onQuantityChange={(quantity) => handleQuantityChange(item.id, quantity)}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-md p-6 dark:bg-slate-900 dark:shadow-slate-950/40">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-            <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {selectedCount} item{selectedCount !== 1 ? 's' : ''} selected
-              </p>
-              <p className="text-2xl font-bold text-gray-900 mt-2 dark:text-gray-100">
-                Total: ${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-4">
+            <div className="bg-white rounded-lg shadow-md p-6 dark:bg-slate-900 dark:shadow-slate-950/40">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Items</h3>
+              <div className="space-y-4">
+                {order.items.map((item) => (
+                  <OrderItem
+                    key={item.id}
+                    item={item}
+                    quantity={selectedItems[item.id]?.quantity || 0}
+                    isSelected={isItemSelected(item.id)}
+                    onToggle={() => handleToggleItem(item.id)}
+                    onQuantityChange={(quantity) => handleQuantityChange(item.id, quantity)}
+                  />
+                ))}
+              </div>
             </div>
-            <Button
+          </div>
+
+          <aside className="bg-white rounded-lg shadow-md p-6 space-y-4 dark:bg-slate-900 dark:shadow-slate-950/40">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Order Summary</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              PO: {order.poNumber}
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Shipping to: {order.shippingAddress}
+            </p>
+            <hr className="my-3 border-gray-200 dark:border-slate-700" />
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600 dark:text-gray-400">Items selected</span>
+              <span className="text-gray-900 dark:text-gray-100">{selectedCount}</span>
+            </div>
+            <div className="flex justify-between text-sm font-semibold">
+              <span className="text-gray-900 dark:text-gray-100">Estimated total</span>
+              <span className="text-gray-900 dark:text-gray-100">${estimatedTotal.toFixed(2)}</span>
+            </div>
+            <Button 
               onClick={handleReorder}
               disabled={selectedCount === 0}
-              size="lg"
-              className="w-full sm:w-auto"
+              className="w-full mt-4"
             >
               Reorder Selected Items
             </Button>
-          </div>
+          </aside>
         </div>
-      </main>
-    </div>
+    </>
   );
 }
 

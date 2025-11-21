@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import BetterBotPanel from "@/components/BetterBotPanel";
+import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
@@ -15,9 +16,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="light" suppressHydrationWarning>
-      <body className="antialiased transition-colors duration-200">
+      <body className="antialiased bg-gray-50 text-gray-900">
         <ThemeProvider>
-          {children}
+          <div className="min-h-screen">
+            {/* Header hides itself on /login so this is safe */}
+            <Header />
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              {children}
+            </main>
+          </div>
           <BetterBotPanel />
         </ThemeProvider>
       </body>

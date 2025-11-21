@@ -253,6 +253,18 @@ export const mockTracking: Record<string, TrackingInfo> = {
 // Mock BetterBot Responses
 export const mockBotResponses: BotResponse[] = [
   {
+    question: "When will order PO-2024-001 arrive?",
+    response: "Order PO-2024-001 was delivered on January 18, 2024. The package included 5 Dell OptiPlex 7090 Desktops and 10 DDR4 RAM modules. Everything was delivered successfully to your address.",
+  },
+  {
+    question: "Are the Lenovo ThinkPads in stock?",
+    response: "I don't see Lenovo ThinkPads in our current inventory. However, we have similar options available: the HP EliteBook 850 G8 (15.6\" FHD, Intel i7, 16GB RAM) is in stock and ready to ship. Would you like me to check for compatible alternatives?",
+  },
+  {
+    question: "Which monitor matches my last order?",
+    response: "Based on your last order (PO-2024-002), you purchased 3 Samsung 27\" 4K UHD IPS Monitors (SKU: SAM-27-4K). We have these same monitors in stock and available for immediate shipping. Would you like to reorder?",
+  },
+  {
     question: "Which laptop from my last purchase is in stock this week?",
     response: "Based on your last order (PO-2024-002), the HP EliteBook 850 G8 is currently in stock and available for immediate shipping. Would you like to reorder it?",
   },
@@ -280,14 +292,40 @@ export function getTrackingByOrderId(orderId: string): TrackingInfo | undefined 
   return mockTracking[orderId];
 }
 
-// Helper function to get bot response (simple keyword matching)
+// Helper function to get bot response (improved keyword matching)
 export function getBotResponse(question: string): string {
   const lowerQuestion = question.toLowerCase();
+  
+  // Try exact or close match first
   for (const response of mockBotResponses) {
-    if (lowerQuestion.includes(response.question.toLowerCase().split(" ")[0])) {
+    const lowerResponseQuestion = response.question.toLowerCase();
+    // Check for exact match or if question contains key phrases from response question
+    if (lowerQuestion === lowerResponseQuestion || 
+        lowerQuestion.includes(lowerResponseQuestion.substring(0, 20))) {
       return response.response;
     }
   }
+  
+  // Keyword-based matching
+  if (lowerQuestion.includes('po-2024-001') || (lowerQuestion.includes('po-2024-001') && lowerQuestion.includes('arrive'))) {
+    return mockBotResponses[0].response;
+  }
+  if (lowerQuestion.includes('lenovo') && (lowerQuestion.includes('thinkpad') || lowerQuestion.includes('stock'))) {
+    return mockBotResponses[1].response;
+  }
+  if (lowerQuestion.includes('monitor') && (lowerQuestion.includes('last order') || lowerQuestion.includes('matches'))) {
+    return mockBotResponses[2].response;
+  }
+  if (lowerQuestion.includes('arrive') || lowerQuestion.includes('delivery') || lowerQuestion.includes('shipment')) {
+    return mockBotResponses[0].response;
+  }
+  if (lowerQuestion.includes('stock') || lowerQuestion.includes('available')) {
+    return mockBotResponses[1].response;
+  }
+  if (lowerQuestion.includes('compatible') || lowerQuestion.includes('match')) {
+    return mockBotResponses[2].response;
+  }
+  
   return "I'm here to help with your orders! Try asking about order status, product compatibility, or stock availability.";
 }
 

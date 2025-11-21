@@ -95,15 +95,21 @@ export default function BetterBotPanel() {
     }
   };
 
+  const examplePrompts = [
+    "When will order PO-2024-001 arrive?",
+    "Are the Lenovo ThinkPads in stock?",
+    "Which monitor matches my last order?",
+  ];
+
   if (!isOpen) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary-600 text-white rounded-full p-4 shadow-lg hover:bg-primary-700 transition-colors z-50"
+        className="fixed bottom-6 right-6 bg-primary-600 text-white rounded-full w-14 h-14 shadow-xl hover:bg-primary-700 hover:scale-110 transition-all duration-200 z-50 flex items-center justify-center group"
         aria-label="Open BetterBot"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
         </svg>
       </button>
     );
@@ -143,29 +149,34 @@ export default function BetterBotPanel() {
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-slate-900/70">
+          {/* Example Prompts - shown above messages when conversation is just starting */}
+          {messages.length <= 1 && (
+            <div className="mb-4 space-y-3">
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Try asking:</p>
+              <div className="space-y-2">
+                {examplePrompts.map((prompt, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleExampleQuestion(prompt)}
+                    className="w-full text-left px-4 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-primary-50 dark:hover:bg-slate-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200 group"
+                  >
+                    <div className="flex items-start space-x-2">
+                      <span className="text-primary-600 dark:text-primary-400 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400">
+                        {prompt}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          
           {messages.map((message) => (
             <ChatMessageComponent key={message.id} message={message} />
           ))}
           <div ref={messagesEndRef} />
         </div>
-
-        {/* Example Questions */}
-        {messages.length <= 1 && (
-          <div className="px-4 py-2 bg-gray-50 border-t border-gray-200 dark:bg-slate-900/70 dark:border-slate-800">
-            <p className="text-xs text-gray-500 mb-2 dark:text-gray-400">Try asking:</p>
-            <div className="flex flex-wrap gap-2">
-              {mockBotResponses.slice(0, 3).map((response, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleExampleQuestion(response.question)}
-                  className="text-xs px-3 py-1 bg-white border border-gray-300 rounded-full hover:bg-gray-100 transition-colors dark:bg-slate-800 dark:border-slate-600 dark:hover:bg-slate-700"
-                >
-                  {response.question}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Input */}
         <div className="p-4 bg-white border-t border-gray-200 dark:bg-slate-900 dark:border-slate-800">
