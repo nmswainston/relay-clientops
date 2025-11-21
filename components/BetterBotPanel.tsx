@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ChatMessage } from '@/types/chat';
-import { getBotResponse, mockBotResponses } from '@/lib/mockData';
+import { getBotResponse } from '@/lib/mockData';
 import ChatMessageComponent from './ChatMessage';
 import Button from './ui/Button';
 
@@ -17,6 +17,7 @@ export default function BetterBotPanel() {
     },
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -39,54 +40,38 @@ export default function BetterBotPanel() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSendMessage = () => {
-    if (!inputValue.trim()) return;
+  const sendMessage = (prompt: string) => {
+    const trimmedPrompt = prompt.trim();
+
+    if (!trimmedPrompt || isTyping) return;
 
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
-      content: inputValue,
+      content: trimmedPrompt,
       timestamp: new Date().toISOString(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
     setInputValue('');
+    setIsTyping(true);
 
-    // Simulate bot response
     setTimeout(() => {
       const botResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: getBotResponse(inputValue),
+        content: getBotResponse(trimmedPrompt),
         timestamp: new Date().toISOString(),
       };
+
       setMessages((prev) => [...prev, botResponse]);
+      setIsTyping(false);
     }, 500);
   };
 
-  const handleExampleQuestion = (question: string) => {
-    setInputValue(question);
-    // Auto-send after a brief moment
-    setTimeout(() => {
-      const userMessage: ChatMessage = {
-        id: Date.now().toString(),
-        role: 'user',
-        content: question,
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prev) => [...prev, userMessage]);
+  const handleSendMessage = () => sendMessage(inputValue);
 
-      setTimeout(() => {
-        const botResponse: ChatMessage = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: getBotResponse(question),
-          timestamp: new Date().toISOString(),
-        };
-        setMessages((prev) => [...prev, botResponse]);
-      }, 500);
-    }, 100);
-  };
+  const handleExampleQuestion = (question: string) => sendMessage(question);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -158,6 +143,7 @@ export default function BetterBotPanel() {
                   <button
                     key={index}
                     onClick={() => handleExampleQuestion(prompt)}
+                    disabled={isTyping}
                     className="w-full text-left px-4 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-primary-50 dark:hover:bg-slate-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200 group"
                   >
                     <div className="flex items-start space-x-2">
@@ -175,6 +161,13 @@ export default function BetterBotPanel() {
           {messages.map((message) => (
             <ChatMessageComponent key={message.id} message={message} />
           ))}
+
+          {isTyping && (
+            <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
+              <span className="h-2 w-2 bg-primary-500 rounded-full animate-pulse" />
+              <span>BetterBot is typing...</span>
+            </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
 
@@ -190,7 +183,7 @@ export default function BetterBotPanel() {
               placeholder="Ask me anything..."
               className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-slate-700 dark:bg-slate-800 dark:text-gray-100"
             />
-            <Button onClick={handleSendMessage} disabled={!inputValue.trim()}>
+            <Button onClick={handleSendMessage} disabled={!inputValue.trim() || isTyping}>
               Send
             </Button>
           </div>
