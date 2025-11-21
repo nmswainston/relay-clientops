@@ -1,54 +1,64 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import ThemeToggle from '@/components/ThemeToggle';
+import { useAuth } from '@/components/AuthProvider';
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { login, isAuthenticated, isLoading } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.replace('/dashboard');
+    }
+  }, [isAuthenticated, isLoading, router]);
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string } = {};
-    
+
     if (!email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Email is invalid';
     }
-    
+
     if (!password) {
       newErrors.password = 'Password is required';
     } else if (password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
-    setIsLoading(true);
-    
-    // Mock authentication - simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      // Store mock auth state (in real app, use proper auth)
-      localStorage.setItem('isAuthenticated', 'true');
-      router.push('/dashboard');
-    }, 500);
+
+    setIsSubmitting(true);
+
+    try {
+      await login(email);
+
+      const redirectPath = searchParams.get('redirect') || '/dashboard';
+      router.push(redirectPath);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,14 +79,14 @@ export default function LoginPage() {
             />
             <p className="text-gray-600 mt-3 dark:text-gray-300">Client Ordering Portal</p>
           </div>
-          
+
           <div className="mb-6">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Sign in to Better Direct</h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Access your recent orders, track shipments, and reorder in just a few clicks.
             </p>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <Input
               label="Email"
@@ -85,9 +95,9 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               error={errors.email}
-              disabled={isLoading}
+              disabled={isSubmitting}
             />
-            
+
             <Input
               label="Password"
               type="password"
@@ -95,18 +105,14 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               error={errors.password}
-              disabled={isLoading}
+              disabled={isSubmitting}
             />
-            
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isLoading}
-            >
-              {isLoading ? 'Signing in…' : 'Sign In'}
+
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? 'Signing in…' : 'Sign In'}
             </Button>
           </form>
-          
+
           <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
             <p>Demo: Use any email and password to login</p>
           </div>
@@ -116,3 +122,10 @@ export default function LoginPage() {
   );
 }
 
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading login…</div>}>
+      <LoginContent />
+    </Suspense>
+  );
+}

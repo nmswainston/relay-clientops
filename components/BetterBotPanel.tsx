@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChatMessage } from '@/types/chat';
-import { getBotResponse, mockBotResponses } from '@/lib/mockData';
+import { getBotResponse } from '@/lib/mockData';
 import ChatMessageComponent from './ChatMessage';
 import Button from './ui/Button';
 
@@ -12,11 +12,13 @@ export default function BetterBotPanel() {
     {
       id: '1',
       role: 'assistant',
-      content: "Hi! I'm BetterBot. I can help you with order status, product compatibility, stock availability, and more. What would you like to know?",
+      content:
+        "Hi! I'm BetterBot. I can help you with order status, product compatibility, stock availability, and more. What would you like to know?",
       timestamp: new Date().toISOString(),
     },
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [isBotTyping, setIsBotTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,55 +39,39 @@ export default function BetterBotPanel() {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, isBotTyping]);
 
-  const handleSendMessage = () => {
-    if (!inputValue.trim()) return;
+  const sendMessage = (prompt: string) => {
+    const trimmedPrompt = prompt.trim();
+    if (!trimmedPrompt || isBotTyping) return;
 
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
-      content: inputValue,
+      content: trimmedPrompt,
       timestamp: new Date().toISOString(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
     setInputValue('');
+    setIsBotTyping(true);
 
-    // Simulate bot response
     setTimeout(() => {
       const botResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: getBotResponse(inputValue),
+        content: getBotResponse(trimmedPrompt),
         timestamp: new Date().toISOString(),
       };
       setMessages((prev) => [...prev, botResponse]);
+      setIsBotTyping(false);
     }, 500);
   };
 
-  const handleExampleQuestion = (question: string) => {
-    setInputValue(question);
-    // Auto-send after a brief moment
-    setTimeout(() => {
-      const userMessage: ChatMessage = {
-        id: Date.now().toString(),
-        role: 'user',
-        content: question,
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prev) => [...prev, userMessage]);
+  const handleSendMessage = () => sendMessage(inputValue);
 
-      setTimeout(() => {
-        const botResponse: ChatMessage = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: getBotResponse(question),
-          timestamp: new Date().toISOString(),
-        };
-        setMessages((prev) => [...prev, botResponse]);
-      }, 500);
-    }, 100);
+  const handleExampleQuestion = (question: string) => {
+    sendMessage(question);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -109,7 +95,11 @@ export default function BetterBotPanel() {
         aria-label="Open BetterBot"
       >
         <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"
+          />
         </svg>
       </button>
     );
@@ -118,10 +108,7 @@ export default function BetterBotPanel() {
   return (
     <>
       {/* Overlay */}
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-40"
-        onClick={() => setIsOpen(false)}
-      />
+      <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsOpen(false)} />
 
       {/* Panel */}
       <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 flex flex-col dark:bg-slate-900 dark:shadow-slate-950/50">
@@ -171,10 +158,21 @@ export default function BetterBotPanel() {
               </div>
             </div>
           )}
-          
+
           {messages.map((message) => (
             <ChatMessageComponent key={message.id} message={message} />
           ))}
+
+          {isBotTyping && (
+            <div className="flex items-start space-x-3 p-3">
+              <div className="w-8 h-8 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-100 flex items-center justify-center font-semibold">
+                BB
+              </div>
+              <div className="bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-gray-200">
+                BetterBot is typing…
+              </div>
+            </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
 
@@ -189,8 +187,9 @@ export default function BetterBotPanel() {
               onKeyDown={handleKeyDown}
               placeholder="Ask me anything..."
               className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-slate-700 dark:bg-slate-800 dark:text-gray-100"
+              disabled={isBotTyping}
             />
-            <Button onClick={handleSendMessage} disabled={!inputValue.trim()}>
+            <Button onClick={handleSendMessage} disabled={!inputValue.trim() || isBotTyping}>
               Send
             </Button>
           </div>
@@ -199,4 +198,3 @@ export default function BetterBotPanel() {
     </>
   );
 }
-
