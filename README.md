@@ -1,88 +1,182 @@
-# Better Direct - Client Ordering App
+# Better Direct - Client Ordering Portal
 
-A modern client ordering application built with Next.js, React, and Tailwind CSS. This app streamlines hardware ordering and tracking for IT managers and procurement coordinators.
+A modern, full-featured client ordering application built with Next.js that streamlines hardware procurement, order management, and shipment tracking for IT managers and procurement coordinators. Better Direct provides an intuitive interface for businesses to manage their hardware orders efficiently.
+
+## Purpose
+
+Better Direct is designed to simplify the hardware ordering process for enterprise clients. It enables users to:
+- **Quickly reorder** from past purchase orders
+- **Track shipments** in real-time with visual timelines
+- **Get instant help** through the BetterBot AI assistant
+- **Manage orders** from a centralized dashboard
+
+This portal serves as the client-facing interface for Better Direct's hardware distribution services, making it easy for businesses to order IT equipment, track deliveries, and manage their procurement workflow.
 
 ## Features
 
-- **Quick Reorder**: Reorder items from past purchases with just a few clicks
-- **Order Tracking**: Real-time shipment tracking with timeline visualization
-- **BetterBot AI Assistant**: Chat interface for instant answers about orders and products
-- **Dashboard**: Centralized view of all key features and recent orders
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+### Core Functionality
+- **🔐 Secure Authentication** - Clean login interface with form validation
+- **📊 Dashboard** - Centralized view with quick access to all features and recent orders
+- **📦 Order Management** - View past orders with detailed information (PO numbers, dates, status, totals)
+- **🔄 Quick Reorder** - Select items from past orders and adjust quantities with intuitive controls
+- **📮 Order Tracking** - Real-time shipment tracking with visual timeline and status updates
+- **🤖 BetterBot AI Assistant** - Interactive chat interface for instant answers about orders, products, and compatibility
 
-## Tech Stack
+### User Experience
+- **🌓 Dark/Light Theme** - Toggle between themes with system preference detection
+- **📱 Responsive Design** - Fully responsive layout that works on desktop, tablet, and mobile
+- **⚡ Fast Performance** - Built with Next.js 16 for optimal performance
+- **♿ Accessible** - Semantic HTML and ARIA labels for better accessibility
+- **🎨 Modern UI** - Clean, professional interface with smooth animations
 
-- **Next.js 16** - React framework with App Router
-- **TypeScript** - Type-safe development
+## 🛠️ Tech Stack
+
+- **Next.js 16** - React framework with App Router for server-side rendering and routing
+- **React 19** - Latest React features with improved performance
+- **TypeScript** - Type-safe development for better code quality
 - **Tailwind CSS v4** - Utility-first CSS framework with CSS-first configuration
-- **React 19** - Modern React with latest features
+- **PostCSS** - CSS processing and optimization
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- **Node.js** 18 or higher
+- **npm** or **yarn** package manager
 
 ### Installation
 
-1. Install dependencies:
+1. Clone the repository:
+```bash
+git clone https://github.com/nmswainston/betterdirect.git
+cd better-direct
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Run the development server:
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ### Login
 
-The app uses mock authentication. You can use any email and password to log in.
+The app currently uses mock authentication for demonstration purposes. You can use **any email and password** to log in. The authentication state is stored in localStorage.
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 better-direct/
-├── app/                    # Next.js app directory
-│   ├── login/              # Login page
-│   ├── dashboard/          # Dashboard page
-│   ├── orders/             # Orders list and detail pages
-│   ├── tracking/           # Order tracking pages
-│   └── layout.tsx          # Root layout
-├── components/             # React components
-│   ├── ui/                 # Reusable UI components
-│   ├── Header.tsx           # Navigation header
-│   ├── BetterBotPanel.tsx  # AI assistant panel
-│   ├── OrderItem.tsx       # Order item component
-│   ├── Timeline.tsx        # Tracking timeline
-│   └── ChatMessage.tsx    # Chat message component
-├── lib/                    # Utilities and mock data
-│   └── mockData.ts         # Mock data for orders, products, tracking
-├── types/                  # TypeScript type definitions
-└── tailwind.config.ts      # Tailwind configuration
+├── app/                          # Next.js app directory (App Router)
+│   ├── login/                    # Login page with authentication
+│   ├── dashboard/                # Main dashboard with quick actions
+│   ├── orders/                   # Orders list and detail pages
+│   │   ├── [id]/                 # Dynamic order detail page
+│   │   └── page.tsx              # Orders list page
+│   ├── tracking/                 # Order tracking pages
+│   │   └── [orderId]/           # Dynamic tracking page
+│   ├── layout.tsx                # Root layout with theme provider
+│   ├── page.tsx                  # Home page (redirects to login)
+│   └── globals.css               # Global styles
+├── components/                   # React components
+│   ├── ui/                       # Reusable UI components
+│   │   ├── Button.tsx           # Button component with variants
+│   │   ├── Card.tsx             # Card container component
+│   │   ├── Input.tsx            # Form input component
+│   │   ├── EmptyState.tsx       # Empty state placeholder
+│   │   └── LoadingSpinner.tsx   # Loading indicator
+│   ├── Header.tsx                # Navigation header
+│   ├── BetterBotPanel.tsx       # AI assistant chat panel
+│   ├── OrderItem.tsx            # Order item with quantity controls
+│   ├── OrderInfoCard.tsx        # Reusable order information card
+│   ├── StatusBadge.tsx         # Order status badge component
+│   ├── Timeline.tsx             # Tracking timeline visualization
+│   ├── ChatMessage.tsx         # Chat message component
+│   ├── ThemeProvider.tsx        # Theme context provider
+│   └── ThemeToggle.tsx         # Theme switcher button
+├── hooks/                       # Custom React hooks
+│   └── useAuthGuard.ts          # Authentication guard hook
+├── lib/                         # Utilities and data
+│   ├── utils.ts                 # Utility functions (formatting, status badges)
+│   └── mockData.ts              # Mock data for orders, products, tracking
+├── types/                       # TypeScript type definitions
+│   ├── order.ts                 # Order and order item types
+│   ├── product.ts               # Product types
+│   ├── tracking.ts              # Tracking information types
+│   ├── chat.ts                   # Chat message types
+│   └── user.ts                  # User types
+└── public/                      # Static assets
+    └── logo.svg                 # Better Direct logo
 ```
 
-## Key Screens
+## 🖥️ Key Screens
 
-1. **Login Screen** (`/login`) - Clean, minimal authentication
-2. **Dashboard** (`/dashboard`) - Quick access to all features
-3. **Past Orders** (`/orders`) - List of all past orders
-4. **Order Detail** (`/orders/[id]`) - Reorder interface with quantity selectors
-5. **Order Tracking** (`/tracking/[orderId]`) - Timeline visualization of shipment status
-6. **BetterBot Panel** - Slide-out AI assistant (accessible from dashboard)
+### 1. Login Screen (`/login`)
+- Clean, minimal authentication interface
+- Email and password validation
+- Theme toggle available
+- Redirects to dashboard on successful login
 
-## Mock Data
+### 2. Dashboard (`/dashboard`)
+- Overview of recent orders (last 3)
+- Quick action cards for common tasks
+- Direct access to BetterBot
+- Status badges for order states
+- Links to track latest order
+
+### 3. Past Orders (`/orders`)
+- Complete list of all past orders
+- Order details: PO number, date, status, total
+- Click to view order details
+- Status indicators with color coding
+
+### 4. Order Detail (`/orders/[id]`)
+- Full order information
+- Item selection with checkboxes
+- Quantity adjustment controls
+- Real-time total calculation
+- Reorder functionality
+
+### 5. Order Tracking (`/tracking/[orderId]`)
+- Visual timeline of order progress
+- Shipping details and carrier information
+- Estimated delivery date
+- Order summary sidebar
+- Status progression visualization
+
+### 6. BetterBot Panel
+- Slide-out chat interface
+- Example questions for quick access
+- Chat history with timestamps
+- Accessible from dashboard or via custom event
+
+## 📊 Mock Data
 
 The app uses mock data for demonstration purposes:
-- 4 sample orders with various statuses
-- Product catalog with hardware items
-- Tracking information for shipped orders
-- Predefined BetterBot responses
 
-## Development
+- **4 Sample Orders** - Various statuses (delivered, out-for-delivery, shipped, processing)
+- **Product Catalog** - Hardware items including desktops, laptops, monitors, RAM, and accessories
+- **Tracking Information** - Detailed tracking data for shipped orders with events and locations
+- **BetterBot Responses** - Predefined responses for common questions about orders, stock, and compatibility
+
+## 🎨 UI Components
+
+The app includes a comprehensive set of reusable UI components:
+
+- **StatusBadge** - Color-coded status indicators for orders
+- **EmptyState** - Placeholder for empty states
+- **LoadingSpinner** - Loading indicators
+- **OrderInfoCard** - Reusable card for displaying order information
+- **Button** - Multiple variants (primary, secondary, outline) and sizes
+- **Card** - Container component with hover effects
+- **Input** - Form input with error handling
+
+## 🔧 Development
 
 ### Build for Production
 
@@ -97,39 +191,72 @@ npm start
 npm run lint
 ```
 
-## Features in Detail
+### Code Structure
+
+The codebase follows best practices:
+- **TypeScript** for type safety
+- **Component-based architecture** with reusable components
+- **Utility functions** centralized in `lib/utils.ts`
+- **Custom hooks** for shared logic
+- **Consistent styling** with Tailwind CSS
+- **Dark mode support** throughout the application
+
+## 📋 Features in Detail
 
 ### Quick Reorder
-- View past purchase orders
-- Select items to reorder
-- Adjust quantities with increment/decrement controls
-- Toggle items on/off with checkboxes
-- See real-time total calculation
+- Browse past purchase orders
+- Select items to reorder with checkboxes
+- Adjust quantities with increment/decrement buttons
+- Toggle items on/off individually
+- Real-time subtotal and total calculation
+- Success feedback on reorder
 
 ### Order Tracking
-- Visual timeline showing order progress
-- Status indicators (Ordered → Processing → Shipped → Out for Delivery → Delivered)
-- Shipping details and estimated delivery
-- Tracking number and carrier information
+- Visual timeline showing order progression
+- Status indicators: Ordered → Processing → Shipped → Out for Delivery → Delivered
+- Event descriptions and locations
+- Timestamp information for each status change
+- Shipping carrier and tracking number display
+- Estimated delivery date
 
 ### BetterBot AI Assistant
-- Slide-out chat panel
+- Slide-out chat panel (accessible from anywhere)
 - Example questions for quick access
-- Mock AI responses based on keyword matching
-- Chat history with timestamps
+- Keyword-based response matching
+- Chat history with message timestamps
+- User and assistant message differentiation
+- Smooth animations and transitions
 
-## Future Enhancements
+### Theme System
+- Light and dark mode support
+- System preference detection
+- Persistent theme selection
+- Smooth theme transitions
+- Consistent theming across all components
 
-- Real backend API integration
-- Actual AI service integration for BetterBot
-- User authentication with proper auth system
-- Real-time order updates
-- Email notifications
-- Advanced search and filtering
-- Product catalog browsing
-- Support ticket system implementation
+## 🚧 Future Enhancements
 
-## License
+- **Backend Integration** - Real API endpoints for orders and tracking
+- **AI Service Integration** - Connect BetterBot to actual AI service (OpenAI, Anthropic, etc.)
+- **Authentication System** - Implement proper authentication with JWT or OAuth
+- **Real-time Updates** - WebSocket integration for live order status updates
+- **Email Notifications** - Order confirmations and shipping notifications
+- **Advanced Search** - Search orders by PO number, date range, status
+- **Filtering & Sorting** - Filter orders by status, date, or amount
+- **Product Catalog** - Browse and search full product catalog
+- **Support Tickets** - Integrated support ticket system
+- **User Profiles** - User account management and preferences
+- **Order History Export** - Export order history to CSV/PDF
+- **Bulk Operations** - Bulk reorder and bulk actions
 
-This is a demonstration project for Better Direct.
+## 📝 License
 
+This is a demonstration project for Better Direct's client ordering portal.
+
+## 🤝 Contributing
+
+This is a private project. For questions or suggestions, please contact the Better Direct team.
+
+---
+
+**Built with ❤️ for Better Direct**
