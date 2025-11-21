@@ -12,7 +12,7 @@ export default function BetterBotPanel() {
     {
       id: '1',
       role: 'assistant',
-      content: "Hi! I'm BetterBot. I can help you with order status, product compatibility, stock availability, and more. What would you like to know?",
+      content: "Hello! I'm BetterBot, your AI assistant for the Better Direct Client Portal. I can help you with:\n\n• Checking order status and tracking information\n• Finding product compatibility details\n• Checking stock availability\n• Answering questions about your past orders\n• Helping with reorders\n\nWhat would you like to know?",
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -39,52 +39,43 @@ export default function BetterBotPanel() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSendMessage = () => {
-    if (!inputValue.trim()) return;
+  const sendMessage = (messageContent: string) => {
+    if (!messageContent.trim()) return;
 
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
-      content: inputValue,
+      content: messageContent,
       timestamp: new Date().toISOString(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    setInputValue('');
 
     // Simulate bot response
     setTimeout(() => {
       const botResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: getBotResponse(inputValue),
+        content: getBotResponse(messageContent),
         timestamp: new Date().toISOString(),
       };
       setMessages((prev) => [...prev, botResponse]);
     }, 500);
   };
 
-  const handleExampleQuestion = (question: string) => {
-    setInputValue(question);
-    // Auto-send after a brief moment
-    setTimeout(() => {
-      const userMessage: ChatMessage = {
-        id: Date.now().toString(),
-        role: 'user',
-        content: question,
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prev) => [...prev, userMessage]);
+  const handleSendMessage = () => {
+    const messageContent = inputValue.trim();
+    if (!messageContent) return;
 
-      setTimeout(() => {
-        const botResponse: ChatMessage = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: getBotResponse(question),
-          timestamp: new Date().toISOString(),
-        };
-        setMessages((prev) => [...prev, botResponse]);
-      }, 500);
+    setInputValue('');
+    sendMessage(messageContent);
+  };
+
+  const handleExampleQuestion = (question: string) => {
+    setInputValue('');
+    // Auto-send after a brief moment to allow UI update
+    setTimeout(() => {
+      sendMessage(question);
     }, 100);
   };
 

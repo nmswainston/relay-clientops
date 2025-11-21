@@ -4,11 +4,14 @@ import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import EmptyState from '@/components/ui/EmptyState';
+import StatusBadge from '@/components/StatusBadge';
 import OrderItem from '@/components/OrderItem';
 import { getOrderById } from '@/lib/mockData';
 import { OrderItem as OrderItemType } from '@/types/order';
 import { useAuthGuard } from '@/hooks/useAuthGuard';
-import { getStatusBadgeClass, formatDate, formatCurrency } from '@/lib/utils';
+import { formatDate, formatCurrency } from '@/lib/utils';
 
 interface SelectedItem {
   item: OrderItemType;
@@ -19,23 +22,24 @@ export default function OrderDetailPage() {
   const router = useRouter();
   const params = useParams();
   const orderId = params.id as string;
-  const isReady = useAuthGuard();
+  const { isReady, isLoading } = useAuthGuard();
   
   const [order, setOrder] = useState(getOrderById(orderId));
   const [selectedItems, setSelectedItems] = useState<Record<string, SelectedItem>>({});
   const [success, setSuccess] = useState(false);
+  const [orderNotFound, setOrderNotFound] = useState(false);
 
   useEffect(() => {
     if (!isReady) return;
 
     const foundOrder = getOrderById(orderId);
     if (!foundOrder) {
-      // Order not found, redirect to orders list
-      router.push('/orders');
+      setOrderNotFound(true);
       return;
     }
 
     setOrder(foundOrder);
+    setOrderNotFound(false);
 
     // Initialize selected items with original quantities
     const initial: Record<string, SelectedItem> = {};
@@ -46,10 +50,41 @@ export default function OrderDetailPage() {
       };
     });
     setSelectedItems(initial);
-  }, [orderId, router, isReady]);
+  }, [orderId, isReady]);
 
-  if (!isReady || !order) {
-    return null;
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (!isReady) return null;
+
+  if (orderNotFound || !order) {
+    return (
+      <div className="space-y-6">
+        <div className="mb-6">
+          <Link
+            href="/orders"
+            className="text-primary-600 hover:text-primary-700 text-sm font-medium mb-4 inline-block"
+          >
+            ← Back to Orders
+          </Link>
+        </div>
+        <EmptyState
+          icon={
+            <svg className="w-16 h-16 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          }
+          title="Order Not Found"
+          description="The order you're looking for doesn't exist or may have been removed."
+          action={
+            <Link href="/orders">
+              <Button>View All Orders</Button>
+            </Link>
+          }
+        />
+      </div>
+    );
   }
 
   const handleToggleItem = (itemId: string) => {
@@ -129,15 +164,13 @@ export default function OrderDetailPage() {
             ← Back to Orders
           </Link>
           <div className="mt-4">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Details</h2>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Details</h1>
             <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-gray-600 dark:text-gray-300">
               <span>PO Number: <span className="font-semibold text-gray-900 dark:text-gray-100">{order.poNumber}</span></span>
               <span className="hidden sm:inline">•</span>
               <span>Date: <span className="font-semibold text-gray-900 dark:text-gray-100">{formatDate(order.date, 'long')}</span></span>
               <span className="hidden sm:inline">•</span>
-              <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusBadgeClass(order.status)}`}>
-                {order.status.replace('-', ' ')}
-              </span>
+              <StatusBadge status={order.status} />
             </div>
           </div>
         </div>

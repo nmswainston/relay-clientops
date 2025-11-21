@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Timeline from '@/components/Timeline';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import EmptyState from '@/components/ui/EmptyState';
 import OrderInfoCard from '@/components/OrderInfoCard';
 import { getOrderById, getTrackingByOrderId } from '@/lib/mockData';
 import { useAuthGuard } from '@/hooks/useAuthGuard';
@@ -15,26 +17,62 @@ export default function TrackingPage() {
   const router = useRouter();
   const params = useParams();
   const orderId = params.orderId as string;
-  const isReady = useAuthGuard();
+  const { isReady, isLoading } = useAuthGuard();
   
   const [order, setOrder] = useState(getOrderById(orderId));
   const [tracking, setTracking] = useState(getTrackingByOrderId(orderId));
+  const [orderNotFound, setOrderNotFound] = useState(false);
 
   useEffect(() => {
     if (!isReady) return;
 
     const foundOrder = getOrderById(orderId);
     if (!foundOrder) {
-      router.push('/dashboard');
+      setOrderNotFound(true);
       return;
     }
 
     setOrder(foundOrder);
+    setOrderNotFound(false);
     setTracking(getTrackingByOrderId(orderId));
-  }, [orderId, router, isReady]);
+  }, [orderId, isReady]);
 
-  if (!isReady || !order) {
-    return null;
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (!isReady) return null;
+
+  if (orderNotFound || !order) {
+    return (
+      <div className="space-y-6">
+        <div className="mb-6">
+          <Link
+            href="/dashboard"
+            className="text-primary-600 hover:text-primary-700 text-sm font-medium mb-4 inline-block"
+          >
+            ← Back to Dashboard
+          </Link>
+          <div className="mt-4">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Tracking</h1>
+          </div>
+        </div>
+        <EmptyState
+          icon={
+            <svg className="w-16 h-16 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          }
+          title="Order Not Found"
+          description="The order you're looking for doesn't exist or may have been removed."
+          action={
+            <Link href="/dashboard">
+              <Button>Back to Dashboard</Button>
+            </Link>
+          }
+        />
+      </div>
+    );
   }
 
   if (!tracking) {
@@ -48,7 +86,7 @@ export default function TrackingPage() {
             ← Back to Dashboard
           </Link>
           <div className="mt-4">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Tracking</h2>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Tracking</h1>
           </div>
         </div>
 
@@ -56,16 +94,15 @@ export default function TrackingPage() {
         <OrderInfoCard order={order} />
 
         {/* No Tracking State */}
-        <Card>
-          <div className="text-center py-8">
-            <p className="text-gray-600 dark:text-gray-300 text-lg mb-2">
-              Tracking isn't available yet. This usually appears once the order has shipped.
-            </p>
+        <EmptyState
+          title="Tracking Not Available"
+          description="Tracking isn't available yet. This usually appears once the order has shipped."
+          action={
             <Link href="/dashboard">
-              <Button variant="secondary" className="mt-4">Back to Dashboard</Button>
+              <Button variant="secondary">Back to Dashboard</Button>
             </Link>
-          </div>
-        </Card>
+          }
+        />
       </div>
     );
   }

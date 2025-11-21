@@ -52,11 +52,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 px-4 dark:from-slate-950 dark:to-slate-900">
-      <div className="absolute top-6 right-6">
-        <ThemeToggle />
-      </div>
-      <div className="w-full max-w-md">
+    <>
+      {/* Full viewport background overlay */}
+      <div className="fixed inset-0 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-slate-950 dark:to-slate-900 -z-10" />
+      
+      {/* Login content */}
+      <div className="relative min-h-screen flex items-center justify-center px-4">
+        <div className="absolute top-6 right-6 z-10">
+          <ThemeToggle />
+        </div>
+        <div className="w-full max-w-md relative z-0">
         <div className="bg-white rounded-2xl shadow-xl p-8 dark:bg-slate-900 dark:shadow-slate-950/60">
           <div className="text-center mb-8 flex flex-col items-center">
             <Image
@@ -67,12 +72,13 @@ export default function LoginPage() {
               style={{ width: '180px', height: '60px' }}
               priority
             />
-            <p className="text-gray-600 mt-3 dark:text-gray-300">Client Ordering Portal</p>
+            <h1 className="text-2xl font-bold text-gray-900 mt-4 dark:text-gray-100">Better Direct Client Portal</h1>
+            <p className="text-gray-600 mt-2 dark:text-gray-300">Your gateway to streamlined hardware ordering</p>
           </div>
           
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Sign in to Better Direct</h1>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Sign In</h2>
+            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
               Access your recent orders, track shipments, and reorder in just a few clicks.
             </p>
           </div>
@@ -107,12 +113,21 @@ export default function LoginPage() {
             </Button>
           </form>
           
-          <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>Demo: Use any email and password to login</p>
+          <div className="mt-6 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+            <div className="flex items-start space-x-2">
+              <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div className="flex-1">
+                <p className="text-xs font-medium text-blue-900 dark:text-blue-300">Demo Mode</p>
+                <p className="text-xs text-blue-700 dark:text-blue-400 mt-0.5">Use any email and password to sign in</p>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
