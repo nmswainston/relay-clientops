@@ -14,14 +14,14 @@ export default function ChatMessage({ message }: ChatMessageProps) {
       <div
         className={`max-w-[80%] rounded-lg px-4 py-2.5 ${
           isUser
-            ? 'bg-primary-600 text-white'
-            : 'bg-white text-gray-900 border border-gray-200 dark:bg-slate-800 dark:text-gray-100 dark:border-slate-700'
+            ? 'bg-accent-600 text-white'
+            : 'bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-primary-dark)] dark:border-[var(--color-border-dark)]'
         }`}
       >
         <p className="text-sm whitespace-pre-wrap">{message.content}</p>
         <p
           className={`text-xs mt-1.5 ${
-            isUser ? 'text-primary-100' : 'text-gray-500 dark:text-gray-400'
+            isUser ? 'text-accent-100' : 'text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]'
           }`}
         >
           {new Date(message.timestamp).toLocaleTimeString('en-US', {

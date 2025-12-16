@@ -1,4 +1,3 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -22,7 +21,7 @@ export default function Input({
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-sm font-semibold text-gray-700 mb-2 dark:text-gray-200"
+          className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2 dark:text-[var(--color-text-primary-dark)]"
         >
           {label}
         </label>
@@ -34,20 +33,20 @@ export default function Input({
           'border-2 rounded-lg',
           'transition-all duration-200',
           'focus:outline-none focus:ring-2 focus:ring-offset-1',
-          'bg-white dark:bg-slate-800 dark:text-gray-100',
-          'placeholder:text-gray-400 dark:placeholder:text-gray-500',
+          'bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-primary-dark)]',
+          'placeholder:text-[var(--color-text-muted)] dark:placeholder:text-[var(--color-text-muted-dark)]',
           error
             ? cn(
-                'border-red-500 focus:ring-red-500 focus:border-red-500',
-                'dark:border-red-600 dark:focus:border-red-600'
+                'border-error-500 focus:ring-error-500 focus:border-error-500',
+                'dark:border-error-600 dark:focus:border-error-600'
               )
             : cn(
-                'border-gray-300 dark:border-slate-600',
-                'focus:ring-primary-500 focus:border-primary-500',
-                'hover:border-gray-400 dark:hover:border-slate-500',
-                'dark:focus:border-primary-400'
+                'border-[var(--color-border)] dark:border-[var(--color-border-dark)]',
+                'focus:ring-accent-500 focus:border-accent-500',
+                'hover:border-[var(--color-border)] dark:hover:border-[var(--color-border-dark)]',
+                'dark:focus:border-accent-400'
               ),
-          'disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 dark:disabled:bg-slate-900/50',
+          'disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-[var(--color-surface-elevated)] dark:disabled:bg-[var(--color-surface-elevated-dark)]',
           className
         )}
         aria-invalid={error ? 'true' : undefined}
@@ -57,7 +56,7 @@ export default function Input({
       {error && (
         <p
           id={`${inputId}-error`}
-          className="mt-1.5 text-sm text-red-600 dark:text-red-400 font-medium flex items-center gap-1"
+          className="mt-1.5 text-sm text-error-600 dark:text-error-400 font-medium flex items-center gap-1"
           role="alert"
         >
           <svg
@@ -76,7 +75,7 @@ export default function Input({
         </p>
       )}
       {!error && helperText && (
-        <p id={`${inputId}-helper`} className="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
+        <p id={`${inputId}-helper`} className="mt-1.5 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
           {helperText}
         </p>
       )}

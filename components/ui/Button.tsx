@@ -1,4 +1,3 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -24,33 +23,33 @@ export default function Button({
     'focus:outline-none focus:ring-2 focus:ring-offset-2',
     'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
     'active:scale-[0.98]',
-    'dark:focus:ring-offset-slate-900'
+    'dark:focus:ring-offset-[var(--color-bg-base-dark)]'
   );
   
   const variantStyles = {
     primary: cn(
-      'bg-primary-600 text-white shadow-sm shadow-primary-600/20',
-      'hover:bg-primary-700 hover:shadow-md hover:shadow-primary-700/30',
-      'focus:ring-primary-500',
-      'dark:bg-primary-600 dark:hover:bg-primary-700'
+      'bg-accent-600 text-white shadow-sm shadow-accent-600/20',
+      'hover:bg-accent-700 hover:shadow-md hover:shadow-accent-700/30',
+      'focus:ring-accent-500',
+      'dark:bg-accent-600 dark:hover:bg-accent-700'
     ),
     secondary: cn(
-      'bg-gray-100 text-gray-900 shadow-sm',
-      'hover:bg-gray-200 hover:shadow-md',
-      'focus:ring-gray-400',
-      'dark:bg-slate-800 dark:text-gray-100 dark:hover:bg-slate-700'
+      'bg-[var(--color-surface-elevated)] text-[var(--color-text-primary)] shadow-sm',
+      'hover:bg-[var(--color-surface-elevated)] hover:shadow-md',
+      'focus:ring-secondary-400',
+      'dark:bg-[var(--color-surface-elevated-dark)] dark:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)]'
     ),
     outline: cn(
-      'border-2 border-primary-600 text-primary-600 bg-transparent',
-      'hover:bg-primary-50 hover:border-primary-700 hover:text-primary-700',
-      'focus:ring-primary-500',
-      'dark:border-primary-500 dark:text-primary-400 dark:hover:bg-primary-900/20'
+      'border-2 border-accent-600 text-accent-600 bg-transparent',
+      'hover:bg-accent-50 hover:border-accent-700 hover:text-accent-700',
+      'focus:ring-accent-500',
+      'dark:border-accent-500 dark:text-accent-400 dark:hover:bg-accent-900/20'
     ),
     ghost: cn(
-      'text-gray-700 bg-transparent',
-      'hover:bg-gray-100 hover:text-gray-900',
-      'focus:ring-gray-400',
-      'dark:text-gray-300 dark:hover:bg-slate-800'
+      'text-[var(--color-text-primary)] bg-transparent',
+      'hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text-primary)]',
+      'focus:ring-secondary-400',
+      'dark:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)]'
     ),
   };
   

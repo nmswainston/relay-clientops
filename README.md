@@ -91,7 +91,7 @@ relay/
 │   │   ├── EmptyState.tsx       # Empty state placeholder
 │   │   └── LoadingSpinner.tsx   # Loading indicator
 │   ├── Header.tsx                # Navigation header
-│   ├── RelayAssistantPanel.tsx  # AI assistant chat panel
+│   ├── BetterBotPanel.tsx        # AI assistant chat panel
 │   ├── OrderItem.tsx            # Order item with quantity controls
 │   ├── OrderInfoCard.tsx        # Reusable order information card
 │   ├── StatusBadge.tsx         # Order status badge component
@@ -108,8 +108,7 @@ relay/
 │   ├── order.ts                 # Order and order item types
 │   ├── product.ts               # Product types
 │   ├── tracking.ts              # Tracking information types
-│   ├── chat.ts                   # Chat message types
-│   └── user.ts                  # User types
+│   └── chat.ts                   # Chat message types
 └── public/                      # Static assets
     └── logo.svg                 # Relay logo
 ```

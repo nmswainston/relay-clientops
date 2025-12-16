@@ -14,24 +14,24 @@ export default function OrderInfoCard({ order, trackingNumber }: OrderInfoCardPr
     <Card>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide dark:text-gray-400 mb-2">PO Number</p>
-          <p className="text-base font-bold text-gray-900 dark:text-gray-100">{order.poNumber}</p>
+          <p className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide dark:text-[var(--color-text-secondary-dark)] mb-2">PO Number</p>
+          <p className="text-base font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{order.poNumber}</p>
         </div>
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide dark:text-gray-400 mb-2">Order Date</p>
-          <p className="text-base font-bold text-gray-900 dark:text-gray-100">
+          <p className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide dark:text-[var(--color-text-secondary-dark)] mb-2">Order Date</p>
+          <p className="text-base font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
             {formatDate(order.date, 'long')}
           </p>
         </div>
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide dark:text-gray-400 mb-2">Shipping Address</p>
-          <p className="text-base font-bold text-gray-900 dark:text-gray-100">{order.shippingAddress}</p>
+          <p className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide dark:text-[var(--color-text-secondary-dark)] mb-2">Shipping Address</p>
+          <p className="text-base font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{order.shippingAddress}</p>
         </div>
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide dark:text-gray-400 mb-2">Tracking Number</p>
-          <p className="text-base font-bold text-gray-900 dark:text-gray-100">
+          <p className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide dark:text-[var(--color-text-secondary-dark)] mb-2">Tracking Number</p>
+          <p className="text-base font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
             {trackingNumber || order.trackingNumber || (
-              <span className="text-gray-400 dark:text-gray-500 font-normal">Not available</span>
+              <span className="text-[var(--color-text-muted)] dark:text-[var(--color-text-muted-dark)] font-normal">Not available</span>
             )}
           </p>
         </div>

@@ -11,20 +11,132 @@
 }
 
 @theme {
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
+  /* Calm, premium, and decisive color palette */
+  
+  /* Background colors - app shell */
+  --color-bg-base: #F6F8FB;
+  --color-bg-base-dark: #0B1220;
+  
+  /* Surface colors - cards, panels */
+  --color-surface: #FFFFFF;
+  --color-surface-dark: #111A2E;
+  
+  /* Surface elevated - hovered/focused cards */
+  --color-surface-elevated: #F0F4FA;
+  --color-surface-elevated-dark: #16223A;
+  
+  /* Border/divider colors */
+  --color-border: #D9E2EF;
+  --color-border-dark: rgba(148, 163, 184, 0.20);
+  --color-border-subtle: #E6EDF7;
+  --color-border-subtle-dark: rgba(148, 163, 184, 0.14);
+  
+  /* Text colors */
+  --color-text-primary: #0F172A;
+  --color-text-primary-dark: #EAF0FA;
+  --color-text-secondary: #334155;
+  --color-text-secondary-dark: rgba(234, 240, 250, 0.72);
+  --color-text-muted: #64748B;
+  --color-text-muted-dark: rgba(234, 240, 250, 0.55);
+  
+  /* Primary accent - confident blue */
+  --color-accent-50: #EEF6FF;
+  --color-accent-100: #D9ECFF;
+  --color-accent-200: #B6DBFF;
+  --color-accent-300: #86C1FF;
+  --color-accent-400: #4E9FFF;
+  --color-accent-500: #2B7FFF;
+  --color-accent-600: #1F66F0;
+  --color-accent-700: #1D52C9;
+  --color-accent-800: #1E469F;
+  --color-accent-900: #1B3B7A;
+  --color-accent-950: #0B1A3A;
+  
+  /* Secondary action */
+  --color-secondary-50: #f4f5f6;
+  --color-secondary-100: #e3e6e8;
+  --color-secondary-200: #c8ced2;
+  --color-secondary-300: #a1abb2;
+  --color-secondary-400: #748089;
+  --color-secondary-500: #5a656d;
+  --color-secondary-600: #4a5259;
+  --color-secondary-700: #3f454b;
+  --color-secondary-800: #373c41;
+  --color-secondary-900: #32363a;
+  --color-secondary-950: #1a1d20;
+  
+  /* Status colors - more readable, still tasteful */
+  /* Success - clean green */
+  --color-success-50: #ECFDF5;
+  --color-success-100: #D1FAE5;
+  --color-success-200: #A7F3D0;
+  --color-success-300: #6EE7B7;
+  --color-success-400: #34D399;
+  --color-success-500: #16A34A;
+  --color-success-600: #15803D;
+  --color-success-700: #166534;
+  --color-success-800: #14532D;
+  --color-success-900: #052E16;
+  --color-success-950: #022014;
+  
+  /* Info - confident blue */
+  --color-info-50: #EEF6FF;
+  --color-info-100: #D9ECFF;
+  --color-info-200: #B6DBFF;
+  --color-info-300: #86C1FF;
+  --color-info-400: #4E9FFF;
+  --color-info-500: #2B7FFF;
+  --color-info-600: #1F66F0;
+  --color-info-700: #1D52C9;
+  --color-info-800: #1E469F;
+  --color-info-900: #1B3B7A;
+  --color-info-950: #0B1A3A;
+  
+  /* Warning - amber */
+  --color-warning-50: #FFFBEB;
+  --color-warning-100: #FEF3C7;
+  --color-warning-200: #FDE68A;
+  --color-warning-300: #FCD34D;
+  --color-warning-400: #FBBF24;
+  --color-warning-500: #D97706;
+  --color-warning-600: #B45309;
+  --color-warning-700: #92400E;
+  --color-warning-800: #78350F;
+  --color-warning-900: #451A03;
+  --color-warning-950: #2A1202;
+  
+  /* Error - red */
+  --color-error-50: #FEF2F2;
+  --color-error-100: #FEE2E2;
+  --color-error-200: #FECACA;
+  --color-error-300: #FCA5A5;
+  --color-error-400: #F87171;
+  --color-error-500: #DC2626;
+  --color-error-600: #B91C1C;
+  --color-error-700: #991B1B;
+  --color-error-800: #7F1D1D;
+  --color-error-900: #450A0A;
+  --color-error-950: #2A0606;
+  
+  /* Legacy primary mapping for backward compatibility */
+  --color-primary-50: var(--color-accent-50);
+  --color-primary-100: var(--color-accent-100);
+  --color-primary-200: var(--color-accent-200);
+  --color-primary-300: var(--color-accent-300);
+  --color-primary-400: var(--color-accent-400);
+  --color-primary-500: var(--color-accent-500);
+  --color-primary-600: var(--color-accent-600);
+  --color-primary-700: var(--color-accent-700);
+  --color-primary-800: var(--color-accent-800);
+  --color-primary-900: var(--color-accent-900);
 }
 
 body {
-  @apply bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-slate-950 dark:text-gray-100;
+  @apply bg-bg-base text-text-primary transition-colors duration-300;
+}
+
+.dark body {
+  @apply bg-bg-base-dark text-text-primary-dark;
 }
 
 /* Smooth scrolling */
@@ -34,12 +146,28 @@ html {
 
 /* Better focus styles */
 *:focus-visible {
-  @apply outline-none ring-2 ring-primary-500 ring-offset-2 dark:ring-primary-400;
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-accent-500),
+    0 0 0 4px rgba(43, 127, 255, 0.25);
+}
+
+.dark *:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-accent-400),
+    0 0 0 4px rgba(78, 159, 255, 0.25);
 }
 
 /* Selection colors */
 ::selection {
-  @apply bg-primary-200 text-primary-900 dark:bg-primary-900 dark:text-primary-100;
+  background: var(--color-accent-200);
+  color: var(--color-accent-950);
+}
+
+.dark ::selection {
+  background: var(--color-accent-800);
+  color: var(--color-accent-50);
 }
 
 @layer utilities {
@@ -57,6 +185,58 @@ html {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+  }
+}
+
+@layer components {
+  /* Logo component uses theme-aware asset swapping
+   * No CSS filters needed - separate logo-dark.svg handles dark mode text contrast
+   * Cyan icon mark remains unchanged across themes
+   */
+  .app-logo {
+    /* Semantic class for logo styling - actual theme switching handled by Logo component */
+  }
+
+  .status-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+    border: 1px solid var(--color-border);
+    letter-spacing: 0.01em;
+  }
+
+  .status-success {
+    background: var(--color-success-200);
+    color: var(--color-success-800);
+    border-color: color-mix(in srgb, var(--color-success-600) 25%, var(--color-border));
+  }
+
+  .status-info {
+    background: var(--color-info-200);
+    color: var(--color-info-900);
+    border-color: color-mix(in srgb, var(--color-info-600) 25%, var(--color-border));
+  }
+
+  .status-neutral {
+    background: var(--color-secondary-100);
+    color: var(--color-text-secondary);
+    border-color: var(--color-border);
+  }
+
+  .dark .status-success {
+    background: color-mix(in srgb, var(--color-success-900) 35%, transparent);
+    color: var(--color-success-200);
+    border-color: color-mix(in srgb, var(--color-success-500) 30%, transparent);
+  }
+
+  .dark .status-info {
+    background: color-mix(in srgb, var(--color-info-900) 35%, transparent);
+    color: var(--color-info-200);
+    border-color: color-mix(in srgb, var(--color-info-500) 30%, transparent);
+  }
+
+  .dark .status-neutral {
+    background: color-mix(in srgb, var(--color-secondary-900) 40%, transparent);
+    color: var(--color-text-secondary-dark);
+    border-color: var(--color-border-dark);
   }
 }
 

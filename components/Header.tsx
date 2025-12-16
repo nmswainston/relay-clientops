@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
+import Logo from './Logo';
 import { cn } from '@/lib/utils';
 
 export default function Header() {
@@ -26,7 +26,7 @@ export default function Header() {
   ];
   
   return (
-    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/80 dark:bg-slate-900/80 dark:border-slate-800/80 dark:shadow-slate-900/50">
+    <header className="sticky top-0 z-40 bg-[var(--color-surface)]/80 backdrop-blur-md shadow-sm border-b border-[var(--color-border-subtle)] dark:bg-[var(--color-surface-dark)]/80 dark:border-[var(--color-border-subtle-dark)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link 
@@ -34,14 +34,11 @@ export default function Header() {
             className="flex items-center group transition-transform duration-200 hover:scale-105" 
             aria-label="Relay home"
           >
-            <Image
-              src="/logo.svg"
-              alt="Relay"
+            <Logo
               width={160}
               height={40}
-              style={{ width: '160px', height: '40px' }}
               priority
-              className="transition-opacity duration-200 group-hover:opacity-90"
+              className="group-hover:opacity-90"
             />
           </Link>
           <nav className="flex items-center space-x-1 sm:space-x-2">
@@ -56,32 +53,32 @@ export default function Header() {
                     'relative',
                     isActive
                       ? cn(
-                          'text-primary-700 bg-primary-50 dark:bg-primary-900/30 dark:text-primary-300',
+                          'text-accent-700 bg-accent-50 dark:bg-accent-900/30 dark:text-accent-300',
                           'shadow-sm'
                         )
                       : cn(
-                          'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
-                          'dark:text-gray-300 dark:hover:bg-slate-800 dark:hover:text-gray-100'
+                          'text-[var(--color-text-primary)] hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text-primary)]',
+                          'dark:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)] dark:hover:text-[var(--color-text-primary-dark)]'
                         )
                   )}
                 >
                   {link.label}
                   {isActive && (
                     <span
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600 dark:bg-primary-400 rounded-t-full"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent-600 dark:bg-accent-400 rounded-t-full"
                       aria-hidden="true"
                     />
                   )}
                 </Link>
               );
             })}
-            <div className="flex items-center space-x-3 ml-2 sm:ml-4 pl-2 sm:pl-4 border-l border-gray-200 dark:border-slate-700">
-              <div className="hidden sm:block text-sm text-gray-700 dark:text-gray-200">
+            <div className="flex items-center space-x-3 ml-2 sm:ml-4 pl-2 sm:pl-4 border-l border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+              <div className="hidden sm:block text-sm text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
                 <span className="font-semibold">Demo User</span>
               </div>
               <button
                 onClick={handleLogout}
-                className="px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors duration-200"
+                className="px-3 py-1.5 text-sm font-medium text-[var(--color-text-primary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface-elevated)] dark:text-[var(--color-text-primary-dark)] dark:hover:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)] rounded-lg transition-colors duration-200"
               >
                 Logout
               </button>

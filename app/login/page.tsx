@@ -1,11 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import ThemeToggle from '@/components/ThemeToggle';
+import Logo from '@/components/Logo';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -54,7 +54,7 @@ export default function LoginPage() {
   return (
     <>
       {/* Full viewport background overlay */}
-      <div className="fixed inset-0 bg-linear-to-br from-primary-50 via-primary-50/50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 -z-10" />
+      <div className="fixed inset-0 bg-[var(--color-bg-base)] dark:bg-[var(--color-bg-base-dark)] -z-10" />
       
       {/* Login content */}
       <div className="relative min-h-screen flex items-center justify-center px-4">
@@ -62,26 +62,22 @@ export default function LoginPage() {
           <ThemeToggle />
         </div>
         <div className="w-full max-w-md relative z-0">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 sm:p-10 dark:bg-slate-900 dark:shadow-slate-950/60 border border-gray-100 dark:border-slate-800">
+        <div className="bg-[var(--color-surface)] rounded-2xl shadow-2xl p-8 sm:p-10 dark:bg-[var(--color-surface-dark)] border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)]">
           <div className="text-center mb-8 flex flex-col items-center">
             <div className="mb-6">
-              <Image
-                src="/logo.svg"
-                alt="Relay"
+              <Logo
                 width={180}
                 height={60}
-                style={{ width: '180px', height: '60px' }}
                 priority
-                className="transition-opacity duration-200"
               />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Relay</h1>
-            <p className="text-gray-600 dark:text-gray-300">Your gateway to streamlined hardware ordering</p>
+            <h1 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">Relay</h1>
+            <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Your gateway to streamlined hardware ordering</p>
           </div>
           
           <div className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Sign In</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <h2 className="text-xl font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">Sign In</h2>
+            <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
               Access your recent orders, track shipments, and reorder in just a few clicks.
             </p>
           </div>
@@ -117,14 +113,14 @@ export default function LoginPage() {
             </Button>
           </form>
           
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <div className="mt-6 p-4 bg-info-50 dark:bg-info-900/20 border border-info-200 dark:border-info-800 rounded-lg">
             <div className="flex items-start space-x-3">
-              <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-info-600 dark:text-info-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">Demo Mode</p>
-                <p className="text-xs text-blue-700 dark:text-blue-400 mt-1">Use any email and password to sign in</p>
+                <p className="text-sm font-semibold text-info-900 dark:text-info-300">Demo Mode</p>
+                <p className="text-xs text-info-700 dark:text-info-400 mt-1">Use any email and password to sign in</p>
               </div>
             </div>
           </div>

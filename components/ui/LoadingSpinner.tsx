@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface LoadingSpinnerProps {
   message?: string;
@@ -22,15 +21,14 @@ export default function LoadingSpinner({
       <div className="text-center">
         <div className="relative inline-block">
           <div
-            className={`inline-block animate-spin rounded-full border-2 border-primary-200 dark:border-primary-900/50 ${sizeClasses[size]}`}
+            className={`inline-block animate-spin rounded-full border-2 border-accent-200 dark:border-accent-900/50 ${sizeClasses[size]}`}
           />
           <div
-            className={`absolute top-0 left-0 animate-spin rounded-full border-t-2 border-r-2 border-primary-600 dark:border-primary-400 ${sizeClasses[size]}`}
-            style={{ animationDuration: '0.75s' }}
+            className={`absolute top-0 left-0 animate-[spin_0.75s_linear_infinite] rounded-full border-t-2 border-r-2 border-accent-600 dark:border-accent-400 ${sizeClasses[size]}`}
           />
         </div>
         {message && (
-          <p className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-400">{message}</p>
+          <p className="mt-4 text-sm font-medium text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">{message}</p>
         )}
       </div>
     </div>

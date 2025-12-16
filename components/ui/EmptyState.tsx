@@ -1,4 +1,4 @@
-import React from 'react';
+import { cn } from '@/lib/utils';
 
 interface EmptyStateProps {
   icon?: React.ReactNode;
@@ -7,8 +7,6 @@ interface EmptyStateProps {
   action?: React.ReactNode;
   className?: string;
 }
-
-import { cn } from '@/lib/utils';
 
 export default function EmptyState({
   icon,
@@ -20,15 +18,15 @@ export default function EmptyState({
   return (
     <div
       className={cn(
-        'bg-white rounded-xl shadow-sm border border-gray-200/80 p-12 text-center',
-        'dark:bg-slate-900 dark:shadow-slate-950/40 dark:border-slate-800/80',
+        'bg-[var(--color-surface)] rounded-xl shadow-sm border border-[var(--color-border-subtle)] p-12 text-center',
+        'dark:bg-[var(--color-surface-dark)] dark:border-[var(--color-border-subtle-dark)]',
         className
       )}
     >
       {icon && <div className="mb-6 flex justify-center">{icon}</div>}
       {!icon && (
         <svg
-          className="w-16 h-16 mx-auto text-gray-400 dark:text-gray-500 mb-6"
+          className="w-16 h-16 mx-auto text-[var(--color-text-muted)] dark:text-[var(--color-text-muted-dark)] mb-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -41,10 +39,10 @@ export default function EmptyState({
           />
         </svg>
       )}
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+      <h3 className="text-lg font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">
         {title}
       </h3>
-      <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">{description}</p>
+      <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] mb-6 max-w-md mx-auto">{description}</p>
       {action && <div className="flex justify-center">{action}</div>}
     </div>
   );

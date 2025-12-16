@@ -12,7 +12,7 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
       aria-pressed={theme === 'dark'}
       aria-label="Toggle theme"
       disabled={!isReady}
-      className={`inline-flex items-center justify-center rounded-full border border-gray-300 bg-white p-2 text-gray-700 shadow-sm transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white disabled:opacity-60 disabled:cursor-not-allowed dark:border-slate-600 dark:bg-slate-800 dark:text-gray-100 dark:hover:bg-slate-700 dark:focus:ring-offset-slate-900 ${className}`}
+      className={`inline-flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] p-2 text-[var(--color-text-primary)] shadow-sm transition-colors hover:bg-[var(--color-surface-elevated)] focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-[var(--color-surface)] disabled:opacity-60 disabled:cursor-not-allowed dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)] dark:focus:ring-offset-[var(--color-bg-base-dark)] ${className}`}
     >
       <span className="sr-only">Toggle color theme</span>
       {theme === 'dark' ? (

@@ -62,17 +62,17 @@ export default function OrderDetailPage() {
   if (orderNotFound || !order) {
     return (
       <div className="space-y-6">
-        <div className="mb-6">
+        <div className="mb-8">
           <Link
             href="/orders"
-            className="text-primary-600 hover:text-primary-700 text-sm font-medium mb-4 inline-block"
+            className="text-accent-600 hover:text-accent-700 dark:text-accent-400 dark:hover:text-accent-300 text-sm font-medium mb-4 inline-block transition-colors"
           >
             ← Back to Orders
           </Link>
         </div>
         <EmptyState
           icon={
-            <svg className="w-16 h-16 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 text-[var(--color-text-muted)] dark:text-[var(--color-text-muted-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           }
@@ -147,57 +147,57 @@ export default function OrderDetailPage() {
   return (
     <>
       {error && (
-        <div className="mb-6 bg-red-50 border-2 border-red-200 rounded-xl p-4 dark:bg-red-900/20 dark:border-red-800 animate-in slide-in-from-top-2 duration-300">
+        <div className="mb-6 bg-error-50 border-2 border-error-200 rounded-xl p-4 dark:bg-error-900/20 dark:border-error-800 animate-in slide-in-from-top-2 duration-300">
           <div className="flex items-center gap-3">
             <div className="flex-shrink-0">
-              <svg className="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-error-600 dark:text-error-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </div>
-            <p className="text-red-800 font-semibold dark:text-red-300">
+            <p className="text-error-800 font-semibold dark:text-error-300">
               {error}
             </p>
           </div>
         </div>
       )}
       {success && (
-        <div className="mb-6 bg-green-50 border-2 border-green-200 rounded-xl p-4 dark:bg-green-900/20 dark:border-green-800 animate-in slide-in-from-top-2 duration-300">
+        <div className="mb-6 bg-success-50 border-2 border-success-200 rounded-xl p-4 dark:bg-success-900/20 dark:border-success-800 animate-in slide-in-from-top-2 duration-300">
           <div className="flex items-center gap-3">
             <div className="flex-shrink-0">
-              <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-success-600 dark:text-success-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="text-green-800 font-semibold dark:text-green-300">
+            <p className="text-success-800 font-semibold dark:text-success-300">
               Reorder successful! Your items have been added to cart.
             </p>
           </div>
         </div>
       )}
 
-      <div className="mb-6">
-          <Link
-            href="/orders"
-            className="text-primary-600 hover:text-primary-700 text-sm font-medium mb-4 inline-block"
-          >
-            ← Back to Orders
-          </Link>
-          <div className="mt-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Details</h1>
-            <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-gray-600 dark:text-gray-300">
-              <span>PO Number: <span className="font-semibold text-gray-900 dark:text-gray-100">{order.poNumber}</span></span>
-              <span className="hidden sm:inline">•</span>
-              <span>Date: <span className="font-semibold text-gray-900 dark:text-gray-100">{formatDate(order.date, 'long')}</span></span>
-              <span className="hidden sm:inline">•</span>
-              <StatusBadge status={order.status} />
-            </div>
+      <div className="mb-8">
+        <Link
+          href="/orders"
+          className="text-accent-600 hover:text-accent-700 dark:text-accent-400 dark:hover:text-accent-300 text-sm font-medium mb-4 inline-block transition-colors"
+        >
+          ← Back to Orders
+        </Link>
+        <div>
+          <h1 className="text-3xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">Order Details</h1>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+            <span>PO Number: <span className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{order.poNumber}</span></span>
+            <span className="hidden sm:inline">•</span>
+            <span>Date: <span className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{formatDate(order.date, 'long')}</span></span>
+            <span className="hidden sm:inline">•</span>
+            <StatusBadge status={order.status} />
           </div>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-4">
             <Card>
-              <h3 className="text-lg font-semibold text-gray-900 mb-6 dark:text-gray-100">Order Items</h3>
+              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-6 dark:text-[var(--color-text-primary-dark)]">Order Items</h3>
               <div className="space-y-4">
                 {order.items.map((item) => (
                   <OrderItem
@@ -215,22 +215,22 @@ export default function OrderDetailPage() {
 
           <aside>
             <Card className="sticky top-24">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">Order Summary</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-6">Order Summary</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
                 PO: {order.poNumber}
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
                 Shipping to: {order.shippingAddress}
               </p>
-              <hr className="my-4 border-gray-200 dark:border-slate-700" />
+              <hr className="my-4 border-[var(--color-border)] dark:border-[var(--color-border-dark)]" />
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600 dark:text-gray-400">Items selected</span>
-                  <span className="font-semibold text-gray-900 dark:text-gray-100">{selectedCount}</span>
+                  <span className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Items selected</span>
+                  <span className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{selectedCount}</span>
                 </div>
-                <div className="flex justify-between text-base font-bold pt-2 border-t border-gray-200 dark:border-slate-700">
-                  <span className="text-gray-900 dark:text-gray-100">Estimated total</span>
-                  <span className="text-gray-900 dark:text-gray-100">{formatCurrency(estimatedTotal)}</span>
+                <div className="flex justify-between text-base font-bold pt-2 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+                  <span className="text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Estimated total</span>
+                  <span className="text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{formatCurrency(estimatedTotal)}</span>
                 </div>
               </div>
               <Button 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Order } from '@/types/order';
 import { getStatusBadgeClass, getStatusLabel } from '@/lib/utils';
 
@@ -21,7 +20,7 @@ export default function StatusBadge({
 }: StatusBadgeProps) {
   return (
     <span
-      className={`inline-flex items-center rounded-full font-medium ${getStatusBadgeClass(
+      className={`status-badge ${getStatusBadgeClass(
         status
       )} ${sizeClasses[size]} ${className}`}
     >

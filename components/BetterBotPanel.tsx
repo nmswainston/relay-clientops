@@ -98,7 +98,7 @@ export default function BetterBotPanel() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary-600 text-white rounded-full w-14 h-14 shadow-xl hover:bg-primary-700 hover:scale-110 transition-all duration-200 z-50 flex items-center justify-center group"
+        className="fixed bottom-6 right-6 bg-accent-600 text-white rounded-full w-14 h-14 shadow-xl hover:bg-accent-700 hover:scale-110 transition-all duration-200 z-50 flex items-center justify-center group"
         aria-label="Open Relay Assistant"
       >
         <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -110,28 +110,22 @@ export default function BetterBotPanel() {
 
   return (
     <>
-      {/* Overlay */}
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-40"
-        onClick={() => setIsOpen(false)}
-      />
-
-      {/* Panel */}
-      <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 flex flex-col dark:bg-slate-900 dark:shadow-slate-950/50">
+      {/* Panel - Popup style */}
+      <div className="fixed bottom-24 right-4 sm:right-6 left-4 sm:left-auto w-auto sm:w-96 h-[600px] max-h-[85vh] bg-[var(--color-surface)] shadow-2xl z-50 flex flex-col rounded-lg border border-[var(--color-border)] dark:bg-[var(--color-surface-dark)] dark:border-[var(--color-border-dark)] transition-all duration-200 ease-out">
         {/* Header */}
-        <div className="bg-primary-600 text-white p-4 flex items-center justify-between">
+        <div className="bg-accent-600 text-white p-4 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <span className="text-primary-600 font-bold text-sm">RA</span>
+            <div className="w-8 h-8 bg-[var(--color-surface)] rounded-full flex items-center justify-center">
+              <span className="text-accent-600 font-bold text-sm">RA</span>
             </div>
             <div>
               <h3 className="font-semibold">Relay Assistant</h3>
-              <p className="text-xs text-primary-100">AI Assistant</p>
+              <p className="text-xs text-accent-100">AI Assistant</p>
             </div>
           </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-white hover:text-primary-100 transition-colors"
+            className="text-white hover:text-accent-100 transition-colors"
             aria-label="Close Relay Assistant"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,21 +135,21 @@ export default function BetterBotPanel() {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-slate-900/70">
+        <div className="flex-1 overflow-y-auto p-4 bg-[var(--color-bg-base)] dark:bg-[var(--color-bg-base-dark)]/70">
           {/* Example Prompts - shown above messages when conversation is just starting */}
           {messages.length <= 1 && (
             <div className="mb-4 space-y-3">
-              <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Try asking:</p>
+              <p className="text-sm font-medium text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Try asking:</p>
               <div className="space-y-2">
                 {examplePrompts.map((prompt, index) => (
                   <button
                     key={index}
                     onClick={() => handleExampleQuestion(prompt)}
-                    className="w-full text-left px-4 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-primary-50 dark:hover:bg-slate-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200 group"
+                    className="w-full text-left px-4 py-3 bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg hover:bg-accent-50 dark:hover:bg-[var(--color-surface-elevated-dark)] hover:border-accent-300 dark:hover:border-accent-600 transition-all duration-200 group"
                   >
                     <div className="flex items-start space-x-2">
-                      <span className="text-primary-600 dark:text-primary-400 mt-0.5">•</span>
-                      <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400">
+                      <span className="text-accent-600 dark:text-accent-400 mt-0.5">•</span>
+                      <span className="text-sm text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] group-hover:text-accent-700 dark:group-hover:text-accent-400">
                         {prompt}
                       </span>
                     </div>
@@ -172,7 +166,7 @@ export default function BetterBotPanel() {
         </div>
 
         {/* Input */}
-        <div className="p-4 bg-white border-t border-gray-200 dark:bg-slate-900 dark:border-slate-800">
+        <div className="p-4 bg-[var(--color-surface)] border-t border-[var(--color-border)] dark:bg-[var(--color-surface-dark)] dark:border-[var(--color-border-dark)] rounded-b-lg">
           <div className="flex space-x-2">
             <input
               ref={inputRef}
@@ -181,7 +175,7 @@ export default function BetterBotPanel() {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask me anything..."
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-slate-700 dark:bg-slate-800 dark:text-gray-100"
+              className="flex-1 px-4 py-2 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-500 dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-primary-dark)]"
             />
             <Button onClick={handleSendMessage} disabled={!inputValue.trim()}>
               Send

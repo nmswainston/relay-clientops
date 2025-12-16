@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased bg-gray-50 text-gray-900">
+      <body className="antialiased">
         <ThemeProvider>
           <div className="min-h-screen flex flex-col">
             {/* Header hides itself on /login so this is safe */}

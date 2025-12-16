@@ -7,11 +7,11 @@ export function cn(...classes: (string | boolean | undefined | null)[]): string 
 
 // Status badge utilities
 export const statusClasses: Record<Order['status'], string> = {
-  'ordered': 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
-  'processing': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300',
-  'shipped': 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
-  'out-for-delivery': 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
-  'delivered': 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
+  'ordered': 'status-neutral',
+  'processing': 'status-neutral',
+  'shipped': 'status-neutral',
+  'out-for-delivery': 'status-info',
+  'delivered': 'status-success',
 };
 
 export const statusLabel: Record<Order['status'], string> = {
