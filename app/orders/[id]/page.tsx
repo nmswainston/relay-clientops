@@ -28,6 +28,7 @@ export default function OrderDetailPage() {
   const [selectedItems, setSelectedItems] = useState<Record<string, SelectedItem>>({});
   const [success, setSuccess] = useState(false);
   const [orderNotFound, setOrderNotFound] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isReady) return;
@@ -117,8 +118,6 @@ export default function OrderDetailPage() {
   const isItemSelected = (itemId: string) => {
     return selectedItems[itemId]?.quantity > 0;
   };
-
-  const [error, setError] = useState<string | null>(null);
 
   const handleReorder = () => {
     const itemsToReorder = Object.values(selectedItems).filter(
@@ -217,30 +216,31 @@ export default function OrderDetailPage() {
           <aside>
             <Card className="sticky top-24">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">Order Summary</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              PO: {order.poNumber}
-            </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Shipping to: {order.shippingAddress}
-            </p>
-            <hr className="my-4 border-gray-200 dark:border-slate-700" />
-            <div className="space-y-3">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-400">Items selected</span>
-                <span className="font-semibold text-gray-900 dark:text-gray-100">{selectedCount}</span>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                PO: {order.poNumber}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Shipping to: {order.shippingAddress}
+              </p>
+              <hr className="my-4 border-gray-200 dark:border-slate-700" />
+              <div className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600 dark:text-gray-400">Items selected</span>
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">{selectedCount}</span>
+                </div>
+                <div className="flex justify-between text-base font-bold pt-2 border-t border-gray-200 dark:border-slate-700">
+                  <span className="text-gray-900 dark:text-gray-100">Estimated total</span>
+                  <span className="text-gray-900 dark:text-gray-100">{formatCurrency(estimatedTotal)}</span>
+                </div>
               </div>
-              <div className="flex justify-between text-base font-bold pt-2 border-t border-gray-200 dark:border-slate-700">
-                <span className="text-gray-900 dark:text-gray-100">Estimated total</span>
-                <span className="text-gray-900 dark:text-gray-100">{formatCurrency(estimatedTotal)}</span>
-              </div>
-            </div>
-            <Button 
-              onClick={handleReorder}
-              disabled={selectedCount === 0}
-              className="w-full mt-6"
-            >
-              Reorder Selected Items
-            </Button>
+              <Button 
+                onClick={handleReorder}
+                disabled={selectedCount === 0}
+                className="w-full mt-6"
+              >
+                Reorder Selected Items
+              </Button>
+            </Card>
           </aside>
         </div>
     </>

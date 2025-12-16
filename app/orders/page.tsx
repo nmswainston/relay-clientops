@@ -11,6 +11,8 @@ import Button from '@/components/ui/Button';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
 import StatusBadge from '@/components/StatusBadge';
+import DemoBadge from '@/components/DemoBadge';
+import Card from '@/components/ui/Card';
 
 type StatusFilter = 'all' | Order['status'];
 
@@ -49,7 +51,8 @@ export default function OrdersPage() {
     <>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Orders</h1>
-        <p className="text-gray-600 dark:text-gray-300">Select an order to reorder items or view details</p>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">Select an order to reorder items or view details</p>
+        <DemoBadge />
       </div>
 
       {/* Filters and Search */}

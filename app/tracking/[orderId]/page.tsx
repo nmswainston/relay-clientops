@@ -9,6 +9,7 @@ import Card from '@/components/ui/Card';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
 import OrderInfoCard from '@/components/OrderInfoCard';
+import DemoBadge from '@/components/DemoBadge';
 import { getOrderById, getTrackingByOrderId } from '@/lib/mockData';
 import { useAuthGuard } from '@/hooks/useAuthGuard';
 import { formatDate, formatDateTime, formatCurrency } from '@/lib/utils';
@@ -53,7 +54,8 @@ export default function TrackingPage() {
             ← Back to Dashboard
           </Link>
           <div className="mt-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Tracking</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Order Tracking</h1>
+            <DemoBadge />
           </div>
         </div>
         <EmptyState
@@ -85,7 +87,8 @@ export default function TrackingPage() {
             ← Back to Dashboard
           </Link>
           <div className="mt-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Tracking</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Order Tracking</h1>
+            <DemoBadge />
           </div>
         </div>
 
@@ -116,7 +119,8 @@ export default function TrackingPage() {
           ← Back to Dashboard
         </Link>
         <div className="mt-4">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Order Tracking</h2>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Order Tracking</h1>
+          <DemoBadge />
         </div>
       </div>
 

@@ -12,7 +12,8 @@ export default function BetterBotPanel() {
     {
       id: '1',
       role: 'assistant',
-      content: "Hello! I'm BetterBot, your AI assistant for the Better Direct Client Portal. I can help you with:\n\n• Checking order status and tracking information\n• Finding product compatibility details\n• Checking stock availability\n• Answering questions about your past orders\n• Helping with reorders\n\nWhat would you like to know?",
+      content:
+        "Hello! I'm Relay Assistant. I can help you with:\n\n• Checking order status and tracking information\n• Finding product compatibility details\n• Checking stock availability\n• Answering questions about your past orders\n• Helping with reorders\n\nWhat would you like to know?",
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -21,12 +22,13 @@ export default function BetterBotPanel() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const handleOpenBetterBot = () => {
+    const handleOpenRelayAssistant = () => {
       setIsOpen(true);
     };
 
-    window.addEventListener('openBetterBot', handleOpenBetterBot);
-    return () => window.removeEventListener('openBetterBot', handleOpenBetterBot);
+    window.addEventListener('openRelayAssistant', handleOpenRelayAssistant);
+    return () =>
+      window.removeEventListener('openRelayAssistant', handleOpenRelayAssistant);
   }, []);
 
   useEffect(() => {
@@ -97,7 +99,7 @@ export default function BetterBotPanel() {
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 bg-primary-600 text-white rounded-full w-14 h-14 shadow-xl hover:bg-primary-700 hover:scale-110 transition-all duration-200 z-50 flex items-center justify-center group"
-        aria-label="Open BetterBot"
+        aria-label="Open Relay Assistant"
       >
         <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
@@ -120,17 +122,17 @@ export default function BetterBotPanel() {
         <div className="bg-primary-600 text-white p-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <span className="text-primary-600 font-bold text-sm">BB</span>
+              <span className="text-primary-600 font-bold text-sm">RA</span>
             </div>
             <div>
-              <h3 className="font-semibold">BetterBot</h3>
+              <h3 className="font-semibold">Relay Assistant</h3>
               <p className="text-xs text-primary-100">AI Assistant</p>
             </div>
           </div>
           <button
             onClick={() => setIsOpen(false)}
             className="text-white hover:text-primary-100 transition-colors"
-            aria-label="Close BetterBot"
+            aria-label="Close Relay Assistant"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

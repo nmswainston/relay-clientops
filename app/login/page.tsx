@@ -54,7 +54,7 @@ export default function LoginPage() {
   return (
     <>
       {/* Full viewport background overlay */}
-      <div className="fixed inset-0 bg-gradient-to-br from-primary-50 via-primary-50/50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 -z-10" />
+      <div className="fixed inset-0 bg-linear-to-br from-primary-50 via-primary-50/50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 -z-10" />
       
       {/* Login content */}
       <div className="relative min-h-screen flex items-center justify-center px-4">
@@ -67,7 +67,7 @@ export default function LoginPage() {
             <div className="mb-6">
               <Image
                 src="/logo.svg"
-                alt="Better Direct"
+                alt="Relay"
                 width={180}
                 height={60}
                 style={{ width: '180px', height: '60px' }}
@@ -75,7 +75,7 @@ export default function LoginPage() {
                 className="transition-opacity duration-200"
               />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Better Direct Client Portal</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Relay</h1>
             <p className="text-gray-600 dark:text-gray-300">Your gateway to streamlined hardware ordering</p>
           </div>
           

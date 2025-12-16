@@ -2,17 +2,23 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
 import { cn } from '@/lib/utils';
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   
   // Don't show header on login page
   if (pathname === '/login') {
     return null;
   }
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    router.push('/login');
+  };
 
   const navLinks = [
     { href: '/dashboard', label: 'Dashboard' },
@@ -26,11 +32,11 @@ export default function Header() {
           <Link 
             href="/dashboard" 
             className="flex items-center group transition-transform duration-200 hover:scale-105" 
-            aria-label="Better Direct home"
+            aria-label="Relay home"
           >
             <Image
               src="/logo.svg"
-              alt="Better Direct"
+              alt="Relay"
               width={160}
               height={40}
               style={{ width: '160px', height: '40px' }}
@@ -71,9 +77,14 @@ export default function Header() {
             })}
             <div className="flex items-center space-x-3 ml-2 sm:ml-4 pl-2 sm:pl-4 border-l border-gray-200 dark:border-slate-700">
               <div className="hidden sm:block text-sm text-gray-700 dark:text-gray-200">
-                <span className="font-semibold">John Doe</span>
-                <span className="text-gray-500 ml-2 dark:text-gray-400">IT Manager</span>
+                <span className="font-semibold">Demo User</span>
               </div>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors duration-200"
+              >
+                Logout
+              </button>
               <ThemeToggle />
             </div>
           </nav>

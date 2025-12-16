@@ -1,16 +1,16 @@
-# Better Direct - Client Ordering Portal
+# Relay
 
-A modern, full-featured client ordering application built with Next.js that streamlines hardware procurement, order management, and shipment tracking for IT managers and procurement coordinators. Better Direct provides an intuitive interface for businesses to manage their hardware orders efficiently.
+Relay is a lightweight client operations platform designed to centralize post-sale work, internal handoffs, and ongoing client context without the overhead of a traditional CRM.
 
 ## Purpose
 
-Better Direct is designed to simplify the hardware ordering process for enterprise clients. It enables users to:
+Relay is designed to simplify operational follow-through for enterprise clients. It enables users to:
 - **Quickly reorder** from past purchase orders
 - **Track shipments** in real-time with visual timelines
-- **Get instant help** through the BetterBot AI assistant
+- **Get instant help** through the Relay Assistant
 - **Manage orders** from a centralized dashboard
 
-This portal serves as the client-facing interface for Better Direct's hardware distribution services, making it easy for businesses to order IT equipment, track deliveries, and manage their procurement workflow.
+This app supports client operations workflows like order tracking, status visibility, and repeat requests in a single, calm interface.
 
 ## Features
 
@@ -20,7 +20,7 @@ This portal serves as the client-facing interface for Better Direct's hardware d
 - **📦 Order Management** - View past orders with detailed information (PO numbers, dates, status, totals)
 - **🔄 Quick Reorder** - Select items from past orders and adjust quantities with intuitive controls
 - **📮 Order Tracking** - Real-time shipment tracking with visual timeline and status updates
-- **🤖 BetterBot AI Assistant** - Interactive chat interface for instant answers about orders, products, and compatibility
+- **🤖 Relay Assistant** - Interactive chat interface for instant answers about orders, products, and compatibility
 
 ### User Experience
 - **🌓 Dark/Light Theme** - Toggle between themes with system preference detection
@@ -48,8 +48,8 @@ This portal serves as the client-facing interface for Better Direct's hardware d
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nmswainston/betterdirect.git
-cd better-direct
+git clone https://github.com/your-org/relay.git
+cd relay
 ```
 
 2. Install dependencies:
@@ -71,7 +71,7 @@ The app currently uses mock authentication for demonstration purposes. You can u
 ## 📁 Project Structure
 
 ```
-better-direct/
+relay/
 ├── app/                          # Next.js app directory (App Router)
 │   ├── login/                    # Login page with authentication
 │   ├── dashboard/                # Main dashboard with quick actions
@@ -91,7 +91,7 @@ better-direct/
 │   │   ├── EmptyState.tsx       # Empty state placeholder
 │   │   └── LoadingSpinner.tsx   # Loading indicator
 │   ├── Header.tsx                # Navigation header
-│   ├── BetterBotPanel.tsx       # AI assistant chat panel
+│   ├── RelayAssistantPanel.tsx  # AI assistant chat panel
 │   ├── OrderItem.tsx            # Order item with quantity controls
 │   ├── OrderInfoCard.tsx        # Reusable order information card
 │   ├── StatusBadge.tsx         # Order status badge component
@@ -111,7 +111,7 @@ better-direct/
 │   ├── chat.ts                   # Chat message types
 │   └── user.ts                  # User types
 └── public/                      # Static assets
-    └── logo.svg                 # Better Direct logo
+    └── logo.svg                 # Relay logo
 ```
 
 ## 🖥️ Key Screens
@@ -125,7 +125,7 @@ better-direct/
 ### 2. Dashboard (`/dashboard`)
 - Overview of recent orders (last 3)
 - Quick action cards for common tasks
-- Direct access to BetterBot
+- Direct access to Relay Assistant
 - Status badges for order states
 - Links to track latest order
 
@@ -149,7 +149,7 @@ better-direct/
 - Order summary sidebar
 - Status progression visualization
 
-### 6. BetterBot Panel
+### 6. Relay Assistant Panel
 - Slide-out chat interface
 - Example questions for quick access
 - Chat history with timestamps
@@ -162,7 +162,7 @@ The app uses mock data for demonstration purposes:
 - **4 Sample Orders** - Various statuses (delivered, out-for-delivery, shipped, processing)
 - **Product Catalog** - Hardware items including desktops, laptops, monitors, RAM, and accessories
 - **Tracking Information** - Detailed tracking data for shipped orders with events and locations
-- **BetterBot Responses** - Predefined responses for common questions about orders, stock, and compatibility
+- **Relay Assistant Responses** - Predefined responses for common questions about orders, stock, and compatibility
 
 ## 🎨 UI Components
 
@@ -219,7 +219,7 @@ The codebase follows best practices:
 - Shipping carrier and tracking number display
 - Estimated delivery date
 
-### BetterBot AI Assistant
+### Relay Assistant
 - Slide-out chat panel (accessible from anywhere)
 - Example questions for quick access
 - Keyword-based response matching
@@ -237,7 +237,7 @@ The codebase follows best practices:
 ## 🚧 Future Enhancements
 
 - **Backend Integration** - Real API endpoints for orders and tracking
-- **AI Service Integration** - Connect BetterBot to actual AI service (OpenAI, Anthropic, etc.)
+- **AI Service Integration** - Connect Relay Assistant to an actual AI service (OpenAI, Anthropic, etc.)
 - **Authentication System** - Implement proper authentication with JWT or OAuth
 - **Real-time Updates** - WebSocket integration for live order status updates
 - **Email Notifications** - Order confirmations and shipping notifications
@@ -251,12 +251,12 @@ The codebase follows best practices:
 
 ## 📝 License
 
-This is a demonstration project for Better Direct's client ordering portal.
+This is a demonstration project for Relay.
 
 ## 🤝 Contributing
 
-This is a private project. For questions or suggestions, please contact the Better Direct team.
+This is a private project. For questions or suggestions, please contact the Relay team.
 
 ---
 
-**Built with ❤️ for Better Direct**
+**Built with care for Relay**

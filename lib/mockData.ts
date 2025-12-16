@@ -200,7 +200,7 @@ export const mockTracking: Record<string, TrackingInfo> = {
   },
 };
 
-// Mock BetterBot Responses
+// Mock Relay Assistant Responses
 export const mockBotResponses: BotResponse[] = [
   {
     question: "When will order PO-2024-001 arrive?",

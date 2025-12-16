@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="faviconGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0ea5e9" />
+      <stop offset="1" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+  <path d="M3 21.5C1.343 19.011 0.5 16.302 0.5 13.5C0.5 6.373 6.373 0.5 13.5 0.5H46L35 12C28.373 18.627 21.627 25.873 15 32.5L3 21.5Z" fill="url(#faviconGrad)"/>
+  <path d="M27.5 6C31.642 2.455 36.924 0.5 42.39 0.5H67.5L52.5 16.5C47.069 22.179 41.637 27.858 36.206 33.536C33.002 37.379 27.539 37.751 24.496 34.187C21.644 29.865 21.998 24.767 25.325 21.915L27.5 20V6Z" fill="url(#faviconGrad)" opacity="0.95"/>
+</svg>
+

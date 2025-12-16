@@ -1,6 +1,6 @@
 <svg width="200" height="63" viewBox="0 0 200 63" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
-  <title id="logoTitle">Better Direct</title>
-  <desc id="logoDesc">Gradient blue abstract arrow with the words Better Direct</desc>
+  <title id="logoTitle">Relay</title>
+  <desc id="logoDesc">Gradient blue abstract arrow with the word Relay</desc>
   <defs>
     <linearGradient id="wingA" x1="10" y1="5" x2="102" y2="56" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0ea5e9" />
@@ -14,10 +14,10 @@
   <path d="M6 42.5C2.686 38.022 0.999997 32.604 1 27C1.00002 12.745 12.745 1 27 1H92L70 24C56.745 38.255 43.255 51.745 30 63L6 42.5Z" fill="url(#wingA)"/>
   <path d="M55 12C63.284 4.9097 73.848 0.999999 84.779 1H135L105 33C94.137 44.357 83.274 55.715 72.411 67.072C66.004 73.758 55.078 73.502 48.992 66.374C43.287 59.729 43.995 49.534 50.65 43.829L55 40V12Z" fill="url(#wingB)" opacity="0.95"/>
   <text x="118" y="40" font-family="Inter, 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-weight="700" font-size="22" fill="#0f1d3b">
-    better
+    Relay
   </text>
   <text x="118" y="58" font-family="Inter, 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-weight="600" font-size="18" fill="#0ea5e9">
-    direct
+    
   </text>
 </svg>
 

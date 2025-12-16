@@ -28,12 +28,7 @@ export default function Card({
     'text-gray-900 transition-all duration-200',
     'dark:bg-slate-900 dark:text-gray-100 dark:border-slate-800/80 dark:shadow-slate-950/40',
     paddingClasses[padding],
-    (hover || onClick) && [
-      'cursor-pointer',
-      'hover:shadow-md hover:shadow-gray-200/50 hover:border-gray-300',
-      'hover:-translate-y-0.5',
-      'dark:hover:shadow-lg dark:hover:shadow-slate-950/60 dark:hover:border-slate-700',
-    ],
+    (hover || onClick) && 'cursor-pointer hover:shadow-md hover:shadow-gray-200/50 hover:border-gray-300 hover:-translate-y-0.5 dark:hover:shadow-lg dark:hover:shadow-slate-950/60 dark:hover:border-slate-700',
     className
   );
   

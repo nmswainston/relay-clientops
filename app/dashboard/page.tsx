@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
 import StatusBadge from '@/components/StatusBadge';
+import DemoBadge from '@/components/DemoBadge';
 import { mockOrders } from '@/lib/mockData';
 import { useAuthGuard } from '@/hooks/useAuthGuard';
 import { formatDate, formatCurrency } from '@/lib/utils';
@@ -26,9 +27,10 @@ export default function DashboardPage() {
     <>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Dashboard</h1>
-        <p className="text-gray-600 text-base dark:text-gray-300">
+        <p className="text-gray-600 text-base dark:text-gray-300 mb-4">
           Overview of your orders and quick access to reordering, tracking, and support
         </p>
+        <DemoBadge />
       </div>
 
       {/* Quick Actions Section */}
@@ -81,7 +83,7 @@ export default function DashboardPage() {
               </svg>
             </div>
           </div>
-          <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1.5">Ask BetterBot</h3>
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1.5">Ask Relay Assistant</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
             Get help with compatibility, stock, and more.
           </p>
@@ -90,11 +92,11 @@ export default function DashboardPage() {
             size="sm"
             variant="outline"
             onClick={() => {
-              const event = new CustomEvent('openBetterBot');
+              const event = new CustomEvent('openRelayAssistant');
               window.dispatchEvent(event);
             }}
           >
-            Open BetterBot
+            Open Relay Assistant
           </Button>
         </Card>
       </div>
