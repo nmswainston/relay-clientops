@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* stylelint-disable-next-line at-rule-no-unknown */
 @custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
 :root {
@@ -189,16 +190,17 @@ html {
 }
 
 @layer components {
-  /* Logo component uses theme-aware asset swapping
-   * No CSS filters needed - separate logo-dark.svg handles dark mode text contrast
-   * Cyan icon mark remains unchanged across themes
-   */
-  .app-logo {
-    /* Semantic class for logo styling - actual theme switching handled by Logo component */
-  }
-
   .status-badge {
-    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
     border: 1px solid var(--color-border);
     letter-spacing: 0.01em;
   }
