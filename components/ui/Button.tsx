@@ -23,7 +23,7 @@ export default function Button({
     'focus:outline-none focus:ring-2 focus:ring-offset-2',
     'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
     'active:scale-[0.98]',
-    'dark:focus:ring-offset-[var(--color-bg-base-dark)]'
+    'dark:focus:ring-offset-bg-base-dark'
   );
   
   const variantStyles = {
@@ -34,10 +34,10 @@ export default function Button({
       'dark:bg-accent-600 dark:hover:bg-accent-700'
     ),
     secondary: cn(
-      'bg-[var(--color-surface-elevated)] text-[var(--color-text-primary)] shadow-sm',
-      'hover:bg-[var(--color-surface-elevated)] hover:shadow-md',
+      'bg-surface-elevated text-text-primary shadow-sm',
+      'hover:bg-surface-elevated hover:shadow-md',
       'focus:ring-secondary-400',
-      'dark:bg-[var(--color-surface-elevated-dark)] dark:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)]'
+      'dark:bg-surface-elevated-dark dark:text-text-primary-dark dark:hover:bg-surface-elevated-dark'
     ),
     outline: cn(
       'border-2 border-accent-600 text-accent-600 bg-transparent',
@@ -46,10 +46,10 @@ export default function Button({
       'dark:border-accent-500 dark:text-accent-400 dark:hover:bg-accent-900/20'
     ),
     ghost: cn(
-      'text-[var(--color-text-primary)] bg-transparent',
-      'hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text-primary)]',
+      'text-text-primary bg-transparent',
+      'hover:bg-surface-elevated hover:text-text-primary',
       'focus:ring-secondary-400',
-      'dark:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)]'
+      'dark:text-text-primary-dark dark:hover:bg-surface-elevated-dark'
     ),
   };
   

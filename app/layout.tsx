@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import BetterBotPanel from "@/components/BetterBotPanel";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import "../styles/globals.css";
+import BetterBotPanel from "@/components/features/chat/BetterBotPanel";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Relay — A Client Operations Platform",

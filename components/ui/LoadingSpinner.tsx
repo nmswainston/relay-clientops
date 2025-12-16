@@ -28,7 +28,7 @@ export default function LoadingSpinner({
           />
         </div>
         {message && (
-          <p className="mt-4 text-sm font-medium text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">{message}</p>
+          <p className="mt-4 text-sm font-medium text-text-secondary dark:text-text-secondary-dark">{message}</p>
         )}
       </div>
     </div>

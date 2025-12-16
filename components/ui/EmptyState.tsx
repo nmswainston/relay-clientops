@@ -18,15 +18,15 @@ export default function EmptyState({
   return (
     <div
       className={cn(
-        'bg-[var(--color-surface)] rounded-xl shadow-sm border border-[var(--color-border-subtle)] p-12 text-center',
-        'dark:bg-[var(--color-surface-dark)] dark:border-[var(--color-border-subtle-dark)]',
+        'bg-surface rounded-xl shadow-sm border border-border-subtle p-12 text-center',
+        'dark:bg-surface-dark dark:border-border-subtle-dark',
         className
       )}
     >
       {icon && <div className="mb-6 flex justify-center">{icon}</div>}
       {!icon && (
         <svg
-          className="w-16 h-16 mx-auto text-[var(--color-text-muted)] dark:text-[var(--color-text-muted-dark)] mb-6"
+          className="w-16 h-16 mx-auto text-text-muted dark:text-text-muted-dark mb-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -39,10 +39,10 @@ export default function EmptyState({
           />
         </svg>
       )}
-      <h3 className="text-lg font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">
+      <h3 className="text-lg font-semibold text-text-primary dark:text-text-primary-dark mb-2">
         {title}
       </h3>
-      <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] mb-6 max-w-md mx-auto">{description}</p>
+      <p className="text-text-secondary dark:text-text-secondary-dark mb-6 max-w-md mx-auto">{description}</p>
       {action && <div className="flex justify-center">{action}</div>}
     </div>
   );

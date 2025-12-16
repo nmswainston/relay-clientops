@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ChatMessage } from '@/types/chat';
 import { getBotResponse } from '@/lib/mockData';
 import ChatMessageComponent from './ChatMessage';
-import Button from './ui/Button';
+import Button from '@/components/ui/Button';
 
 export default function BetterBotPanel() {
   const [isOpen, setIsOpen] = useState(false);
@@ -111,11 +111,11 @@ export default function BetterBotPanel() {
   return (
     <>
       {/* Panel - Popup style */}
-      <div className="fixed bottom-24 right-4 sm:right-6 left-4 sm:left-auto w-auto sm:w-96 h-[600px] max-h-[85vh] bg-[var(--color-surface)] shadow-2xl z-50 flex flex-col rounded-lg border border-[var(--color-border)] dark:bg-[var(--color-surface-dark)] dark:border-[var(--color-border-dark)] transition-all duration-200 ease-out">
+      <div className="fixed bottom-24 right-4 sm:right-6 left-4 sm:left-auto w-auto sm:w-96 h-[600px] max-h-[85vh] bg-surface shadow-2xl z-50 flex flex-col rounded-lg border border-border dark:bg-surface-dark dark:border-border-dark transition-all duration-200 ease-out">
         {/* Header */}
         <div className="bg-accent-600 text-white p-4 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-[var(--color-surface)] rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-surface rounded-full flex items-center justify-center">
               <span className="text-accent-600 font-bold text-sm">RA</span>
             </div>
             <div>
@@ -135,21 +135,21 @@ export default function BetterBotPanel() {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 bg-[var(--color-bg-base)] dark:bg-[var(--color-bg-base-dark)]/70">
+        <div className="flex-1 overflow-y-auto p-4 bg-bg-base dark:bg-bg-base-dark/70">
           {/* Example Prompts - shown above messages when conversation is just starting */}
           {messages.length <= 1 && (
             <div className="mb-4 space-y-3">
-              <p className="text-sm font-medium text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Try asking:</p>
+              <p className="text-sm font-medium text-text-primary dark:text-text-primary-dark">Try asking:</p>
               <div className="space-y-2">
                 {examplePrompts.map((prompt, index) => (
                   <button
                     key={index}
                     onClick={() => handleExampleQuestion(prompt)}
-                    className="w-full text-left px-4 py-3 bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg hover:bg-accent-50 dark:hover:bg-[var(--color-surface-elevated-dark)] hover:border-accent-300 dark:hover:border-accent-600 transition-all duration-200 group"
+                    className="w-full text-left px-4 py-3 bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-lg hover:bg-accent-50 dark:hover:bg-surface-elevated-dark hover:border-accent-300 dark:hover:border-accent-600 transition-all duration-200 group"
                   >
                     <div className="flex items-start space-x-2">
                       <span className="text-accent-600 dark:text-accent-400 mt-0.5">•</span>
-                      <span className="text-sm text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] group-hover:text-accent-700 dark:group-hover:text-accent-400">
+                      <span className="text-sm text-text-primary dark:text-text-primary-dark group-hover:text-accent-700 dark:group-hover:text-accent-400">
                         {prompt}
                       </span>
                     </div>
@@ -166,7 +166,7 @@ export default function BetterBotPanel() {
         </div>
 
         {/* Input */}
-        <div className="p-4 bg-[var(--color-surface)] border-t border-[var(--color-border)] dark:bg-[var(--color-surface-dark)] dark:border-[var(--color-border-dark)] rounded-b-lg">
+        <div className="p-4 bg-surface border-t border-border dark:bg-surface-dark dark:border-border-dark rounded-b-lg">
           <div className="flex space-x-2">
             <input
               ref={inputRef}
@@ -175,7 +175,7 @@ export default function BetterBotPanel() {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask me anything..."
-              className="flex-1 px-4 py-2 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-500 dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-primary-dark)]"
+              className="flex-1 px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-500 dark:border-border-dark dark:bg-surface-dark dark:text-text-primary-dark"
             />
             <Button onClick={handleSendMessage} disabled={!inputValue.trim()}>
               Send

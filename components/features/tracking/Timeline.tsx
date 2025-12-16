@@ -39,14 +39,14 @@ export default function Timeline({ events, currentStatus }: TimelineProps) {
             {index !== statusOrder.length - 1 && (
               <div
                 className={`absolute left-4 top-8 h-full w-0.5 ${
-                  isCompleted ? 'bg-accent-600' : 'bg-[var(--color-border)] dark:bg-[var(--color-border-dark)]'
+                  isCompleted ? 'bg-accent-600' : 'bg-border dark:bg-border-dark'
                 }`}
               />
             )}
             <div className="flex items-start">
               <div
                 className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full ${
-                  isCompleted ? 'bg-accent-600' : 'bg-[var(--color-border)] dark:bg-[var(--color-border-dark)]'
+                  isCompleted ? 'bg-accent-600' : 'bg-border dark:bg-border-dark'
                 }`}
               >
                 {isCompleted && (
@@ -69,29 +69,29 @@ export default function Timeline({ events, currentStatus }: TimelineProps) {
                     isCurrent
                       ? 'text-accent-600 dark:text-accent-400'
                       : isCompleted
-                        ? 'text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]'
-                        : 'text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]'
+                        ? 'text-text-primary dark:text-text-primary-dark'
+                        : 'text-text-secondary dark:text-text-secondary-dark'
                   }`}
                 >
                   {statusLabels[status]}
                 </h3>
                 {event && (
                   <>
-                    <p className="mt-1 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+                    <p className="mt-1 text-sm text-text-secondary dark:text-text-secondary-dark">
                       {event.description}
                     </p>
                     {event.location && (
-                      <p className="mt-1 text-xs text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+                      <p className="mt-1 text-xs text-text-secondary dark:text-text-secondary-dark">
                         {event.location}
                       </p>
                     )}
-                    <p className="mt-1 text-xs text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+                    <p className="mt-1 text-xs text-text-secondary dark:text-text-secondary-dark">
                       {formatDateTime(event.timestamp)}
                     </p>
                   </>
                 )}
                 {!event && !isCompleted && (
-                  <p className="mt-1 text-sm text-[var(--color-text-muted)] dark:text-[var(--color-text-muted-dark)]">Pending</p>
+                  <p className="mt-1 text-sm text-text-muted dark:text-text-muted-dark">Pending</p>
                 )}
               </div>
             </div>

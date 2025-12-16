@@ -23,11 +23,11 @@ export default function Card({
   };
 
   const baseStyles = cn(
-    'bg-[var(--color-surface)] rounded-xl shadow-sm border border-[var(--color-border-subtle)]',
-    'text-[var(--color-text-primary)] transition-all duration-200',
-    'dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-primary-dark)] dark:border-[var(--color-border-subtle-dark)]',
+    'bg-surface rounded-xl shadow-sm border border-border-subtle',
+    'text-text-primary transition-all duration-200',
+    'dark:bg-surface-dark dark:text-text-primary-dark dark:border-border-subtle-dark',
     paddingClasses[padding],
-    (hover || onClick) && 'cursor-pointer hover:shadow-md hover:shadow-black/5 hover:border-[var(--color-border)] hover:-translate-y-0.5 dark:hover:shadow-lg dark:hover:shadow-black/20 dark:hover:border-[var(--color-border-dark)]',
+    (hover || onClick) && 'cursor-pointer hover:shadow-md hover:shadow-black/5 hover:border-border hover:-translate-y-0.5 dark:hover:shadow-lg dark:hover:shadow-black/20 dark:hover:border-border-dark',
     className
   );
   

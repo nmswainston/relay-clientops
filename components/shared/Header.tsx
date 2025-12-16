@@ -26,7 +26,7 @@ export default function Header() {
   ];
   
   return (
-    <header className="sticky top-0 z-40 bg-[var(--color-surface)]/80 backdrop-blur-md shadow-sm border-b border-[var(--color-border-subtle)] dark:bg-[var(--color-surface-dark)]/80 dark:border-[var(--color-border-subtle-dark)]">
+    <header className="sticky top-0 z-40 bg-surface/80 backdrop-blur-md shadow-sm border-b border-border-subtle dark:bg-surface-dark/80 dark:border-border-subtle-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link 
@@ -57,8 +57,8 @@ export default function Header() {
                           'shadow-sm'
                         )
                       : cn(
-                          'text-[var(--color-text-primary)] hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text-primary)]',
-                          'dark:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)] dark:hover:text-[var(--color-text-primary-dark)]'
+                          'text-text-primary hover:bg-surface-elevated hover:text-text-primary',
+                          'dark:text-text-primary-dark dark:hover:bg-surface-elevated-dark dark:hover:text-text-primary-dark'
                         )
                   )}
                 >
@@ -72,13 +72,13 @@ export default function Header() {
                 </Link>
               );
             })}
-            <div className="flex items-center space-x-3 ml-2 sm:ml-4 pl-2 sm:pl-4 border-l border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
-              <div className="hidden sm:block text-sm text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+            <div className="flex items-center space-x-3 ml-2 sm:ml-4 pl-2 sm:pl-4 border-l border-border dark:border-border-dark">
+              <div className="hidden sm:block text-sm text-text-primary dark:text-text-primary-dark">
                 <span className="font-semibold">Demo User</span>
               </div>
               <button
                 onClick={handleLogout}
-                className="px-3 py-1.5 text-sm font-medium text-[var(--color-text-primary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface-elevated)] dark:text-[var(--color-text-primary-dark)] dark:hover:text-[var(--color-text-primary-dark)] dark:hover:bg-[var(--color-surface-elevated-dark)] rounded-lg transition-colors duration-200"
+                className="px-3 py-1.5 text-sm font-medium text-text-primary hover:text-text-primary hover:bg-surface-elevated dark:text-text-primary-dark dark:hover:text-text-primary-dark dark:hover:bg-surface-elevated-dark rounded-lg transition-colors duration-200"
               >
                 Logout
               </button>

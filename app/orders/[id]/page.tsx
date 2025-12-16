@@ -7,8 +7,8 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
-import StatusBadge from '@/components/StatusBadge';
-import OrderItem from '@/components/OrderItem';
+import StatusBadge from '@/components/features/orders/StatusBadge';
+import OrderItem from '@/components/features/orders/OrderItem';
 import { getOrderById } from '@/lib/mockData';
 import { OrderItem as OrderItemType } from '@/types/order';
 import { useAuthGuard } from '@/hooks/useAuthGuard';
@@ -72,7 +72,7 @@ export default function OrderDetailPage() {
         </div>
         <EmptyState
           icon={
-            <svg className="w-16 h-16 text-[var(--color-text-muted)] dark:text-[var(--color-text-muted-dark)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 text-text-muted dark:text-text-muted-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           }
@@ -183,11 +183,11 @@ export default function OrderDetailPage() {
           ← Back to Orders
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">Order Details</h1>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
-            <span>PO Number: <span className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{order.poNumber}</span></span>
+          <h1 className="text-3xl font-bold text-text-primary dark:text-text-primary-dark mb-2">Order Details</h1>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-text-secondary dark:text-text-secondary-dark">
+            <span>PO Number: <span className="font-semibold text-text-primary dark:text-text-primary-dark">{order.poNumber}</span></span>
             <span className="hidden sm:inline">•</span>
-            <span>Date: <span className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{formatDate(order.date, 'long')}</span></span>
+            <span>Date: <span className="font-semibold text-text-primary dark:text-text-primary-dark">{formatDate(order.date, 'long')}</span></span>
             <span className="hidden sm:inline">•</span>
             <StatusBadge status={order.status} />
           </div>
@@ -197,7 +197,7 @@ export default function OrderDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-4">
             <Card>
-              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-6 dark:text-[var(--color-text-primary-dark)]">Order Items</h3>
+              <h3 className="text-lg font-semibold text-text-primary mb-6 dark:text-text-primary-dark">Order Items</h3>
               <div className="space-y-4">
                 {order.items.map((item) => (
                   <OrderItem
@@ -215,22 +215,22 @@ export default function OrderDetailPage() {
 
           <aside>
             <Card className="sticky top-24">
-              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-6">Order Summary</h3>
-              <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+              <h3 className="text-lg font-semibold text-text-primary dark:text-text-primary-dark mb-6">Order Summary</h3>
+              <p className="text-sm text-text-secondary dark:text-text-secondary-dark">
                 PO: {order.poNumber}
               </p>
-              <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+              <p className="text-sm text-text-secondary dark:text-text-secondary-dark">
                 Shipping to: {order.shippingAddress}
               </p>
-              <hr className="my-4 border-[var(--color-border)] dark:border-[var(--color-border-dark)]" />
+              <hr className="my-4 border-border dark:border-border-dark" />
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Items selected</span>
-                  <span className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{selectedCount}</span>
+                  <span className="text-text-secondary dark:text-text-secondary-dark">Items selected</span>
+                  <span className="font-semibold text-text-primary dark:text-text-primary-dark">{selectedCount}</span>
                 </div>
-                <div className="flex justify-between text-base font-bold pt-2 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
-                  <span className="text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Estimated total</span>
-                  <span className="text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{formatCurrency(estimatedTotal)}</span>
+                <div className="flex justify-between text-base font-bold pt-2 border-t border-border dark:border-border-dark">
+                  <span className="text-text-primary dark:text-text-primary-dark">Estimated total</span>
+                  <span className="text-text-primary dark:text-text-primary-dark">{formatCurrency(estimatedTotal)}</span>
                 </div>
               </div>
               <Button 

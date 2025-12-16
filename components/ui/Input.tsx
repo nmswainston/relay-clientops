@@ -21,7 +21,7 @@ export default function Input({
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2 dark:text-[var(--color-text-primary-dark)]"
+          className="block text-sm font-semibold text-text-primary mb-2 dark:text-text-primary-dark"
         >
           {label}
         </label>
@@ -33,20 +33,20 @@ export default function Input({
           'border-2 rounded-lg',
           'transition-all duration-200',
           'focus:outline-none focus:ring-2 focus:ring-offset-1',
-          'bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-primary-dark)]',
-          'placeholder:text-[var(--color-text-muted)] dark:placeholder:text-[var(--color-text-muted-dark)]',
+          'bg-surface dark:bg-surface-dark dark:text-text-primary-dark',
+          'placeholder:text-text-muted dark:placeholder:text-text-muted-dark',
           error
             ? cn(
                 'border-error-500 focus:ring-error-500 focus:border-error-500',
                 'dark:border-error-600 dark:focus:border-error-600'
               )
             : cn(
-                'border-[var(--color-border)] dark:border-[var(--color-border-dark)]',
+                'border-border dark:border-border-dark',
                 'focus:ring-accent-500 focus:border-accent-500',
-                'hover:border-[var(--color-border)] dark:hover:border-[var(--color-border-dark)]',
+                'hover:border-border dark:hover:border-border-dark',
                 'dark:focus:border-accent-400'
               ),
-          'disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-[var(--color-surface-elevated)] dark:disabled:bg-[var(--color-surface-elevated-dark)]',
+          'disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-surface-elevated dark:disabled:bg-surface-elevated-dark',
           className
         )}
         aria-invalid={error ? 'true' : undefined}
@@ -75,7 +75,7 @@ export default function Input({
         </p>
       )}
       {!error && helperText && (
-        <p id={`${inputId}-helper`} className="mt-1.5 text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+        <p id={`${inputId}-helper`} className="mt-1.5 text-sm text-text-secondary dark:text-text-secondary-dark">
           {helperText}
         </p>
       )}

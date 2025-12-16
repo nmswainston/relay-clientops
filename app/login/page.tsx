@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
-import ThemeToggle from '@/components/ThemeToggle';
-import Logo from '@/components/Logo';
+import ThemeToggle from '@/components/shared/ThemeToggle';
+import Logo from '@/components/shared/Logo';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -54,7 +54,7 @@ export default function LoginPage() {
   return (
     <>
       {/* Full viewport background overlay */}
-      <div className="fixed inset-0 bg-[var(--color-bg-base)] dark:bg-[var(--color-bg-base-dark)] -z-10" />
+      <div className="fixed inset-0 bg-bg-base dark:bg-bg-base-dark -z-10" />
       
       {/* Login content */}
       <div className="relative min-h-screen flex items-center justify-center px-4">
@@ -62,7 +62,7 @@ export default function LoginPage() {
           <ThemeToggle />
         </div>
         <div className="w-full max-w-md relative z-0">
-        <div className="bg-[var(--color-surface)] rounded-2xl shadow-2xl p-8 sm:p-10 dark:bg-[var(--color-surface-dark)] border border-[var(--color-border-subtle)] dark:border-[var(--color-border-subtle-dark)]">
+        <div className="bg-surface rounded-2xl shadow-2xl p-8 sm:p-10 dark:bg-surface-dark border border-border-subtle dark:border-border-subtle-dark">
           <div className="text-center mb-8 flex flex-col items-center">
             <div className="mb-6">
               <Logo
@@ -71,13 +71,13 @@ export default function LoginPage() {
                 priority
               />
             </div>
-            <h1 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">Relay</h1>
-            <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Your gateway to streamlined hardware ordering</p>
+            <h1 className="text-2xl font-bold text-text-primary dark:text-text-primary-dark mb-2">Relay</h1>
+            <p className="text-text-secondary dark:text-text-secondary-dark">Your gateway to streamlined hardware ordering</p>
           </div>
           
           <div className="mb-8">
-            <h2 className="text-xl font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">Sign In</h2>
-            <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+            <h2 className="text-xl font-semibold text-text-primary dark:text-text-primary-dark mb-2">Sign In</h2>
+            <p className="text-sm text-text-secondary dark:text-text-secondary-dark">
               Access your recent orders, track shipments, and reorder in just a few clicks.
             </p>
           </div>

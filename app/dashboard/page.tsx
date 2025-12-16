@@ -5,8 +5,8 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
-import StatusBadge from '@/components/StatusBadge';
-import DemoBadge from '@/components/DemoBadge';
+import StatusBadge from '@/components/features/orders/StatusBadge';
+import DemoBadge from '@/components/shared/DemoBadge';
 import { mockOrders } from '@/lib/mockData';
 import { useAuthGuard } from '@/hooks/useAuthGuard';
 import { formatDate, formatCurrency } from '@/lib/utils';
@@ -26,8 +26,8 @@ export default function DashboardPage() {
   return (
     <>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">Dashboard</h1>
-        <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] mb-4">
+        <h1 className="text-3xl font-bold text-text-primary dark:text-text-primary-dark mb-2">Dashboard</h1>
+        <p className="text-text-secondary dark:text-text-secondary-dark mb-4">
           Overview of your orders and quick access to reordering, tracking, and support
         </p>
         <DemoBadge />
@@ -43,8 +43,8 @@ export default function DashboardPage() {
               </svg>
             </div>
           </div>
-          <h3 className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-1.5">Quick Reorder</h3>
-          <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] mb-4">
+          <h3 className="font-semibold text-text-primary dark:text-text-primary-dark mb-1.5">Quick Reorder</h3>
+          <p className="text-sm text-text-secondary dark:text-text-secondary-dark mb-4">
             Reorder from your recent purchase orders.
           </p>
           <Link href="/orders">
@@ -59,8 +59,8 @@ export default function DashboardPage() {
               </svg>
             </div>
           </div>
-          <h3 className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-1.5">Track Orders</h3>
-          <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] mb-4">
+          <h3 className="font-semibold text-text-primary dark:text-text-primary-dark mb-1.5">Track Orders</h3>
+          <p className="text-sm text-text-secondary dark:text-text-secondary-dark mb-4">
             Check real-time status for active shipments.
           </p>
           {ordersWithTracking[0] ? (
@@ -83,8 +83,8 @@ export default function DashboardPage() {
               </svg>
             </div>
           </div>
-          <h3 className="font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-1.5">Ask Relay Assistant</h3>
-          <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] mb-4">
+          <h3 className="font-semibold text-text-primary dark:text-text-primary-dark mb-1.5">Ask Relay Assistant</h3>
+          <p className="text-sm text-text-secondary dark:text-text-secondary-dark mb-4">
             Get help with compatibility, stock, and more.
           </p>
           <Button
@@ -104,7 +104,7 @@ export default function DashboardPage() {
       {/* Recent Orders Section */}
       <div>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Recent Orders</h2>
+          <h2 className="text-xl font-semibold text-text-primary dark:text-text-primary-dark">Recent Orders</h2>
           {recentOrders.length > 0 && (
             <Link
               href="/orders"
@@ -125,46 +125,46 @@ export default function DashboardPage() {
             }
           />
         ) : (
-          <div className="bg-[var(--color-surface)] rounded-xl shadow-sm border border-[var(--color-border-subtle)] overflow-hidden dark:bg-[var(--color-surface-dark)] dark:border-[var(--color-border-subtle-dark)]">
+          <div className="bg-surface rounded-xl shadow-sm border border-border-subtle overflow-hidden dark:bg-surface-dark dark:border-border-subtle-dark">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-[var(--color-border)] dark:divide-[var(--color-border-dark)]">
-                <thead className="bg-[var(--color-surface-elevated)] dark:bg-[var(--color-surface-elevated-dark)]">
+              <table className="min-w-full divide-y divide-border dark:divide-border-dark">
+                <thead className="bg-surface-elevated dark:bg-surface-elevated-dark">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-[var(--color-text-primary)] uppercase tracking-wider dark:text-[var(--color-text-primary-dark)]">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-text-primary uppercase tracking-wider dark:text-text-primary-dark">
                       PO Number
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-[var(--color-text-primary)] uppercase tracking-wider dark:text-[var(--color-text-primary-dark)]">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-text-primary uppercase tracking-wider dark:text-text-primary-dark">
                       Order Date
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-[var(--color-text-primary)] uppercase tracking-wider dark:text-[var(--color-text-primary-dark)]">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-text-primary uppercase tracking-wider dark:text-text-primary-dark">
                       Status
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-[var(--color-text-primary)] uppercase tracking-wider dark:text-[var(--color-text-primary-dark)]">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-text-primary uppercase tracking-wider dark:text-text-primary-dark">
                       Total
                     </th>
-                    <th className="px-6 py-4 text-right text-xs font-semibold text-[var(--color-text-primary)] uppercase tracking-wider dark:text-[var(--color-text-primary-dark)]">
+                    <th className="px-6 py-4 text-right text-xs font-semibold text-text-primary uppercase tracking-wider dark:text-text-primary-dark">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-[var(--color-surface)] divide-y divide-[var(--color-border)] dark:bg-[var(--color-surface-dark)] dark:divide-[var(--color-border-dark)]">
+                <tbody className="bg-surface divide-y divide-border dark:bg-surface-dark dark:divide-border-dark">
                   {recentOrders.map((order) => (
                     <tr 
                       key={order.id} 
-                      className="transition-colors duration-150 hover:bg-[var(--color-surface-elevated)] dark:hover:bg-[var(--color-surface-elevated-dark)]"
+                      className="transition-colors duration-150 hover:bg-surface-elevated dark:hover:bg-surface-elevated-dark"
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+                        <span className="text-sm font-semibold text-text-primary dark:text-text-primary-dark">
                           {order.poNumber}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-text-secondary dark:text-text-secondary-dark">
                         {formatDate(order.date)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <StatusBadge status={order.status} />
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-text-primary dark:text-text-primary-dark">
                         {formatCurrency(order.total)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

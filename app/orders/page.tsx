@@ -10,8 +10,8 @@ import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
-import StatusBadge from '@/components/StatusBadge';
-import DemoBadge from '@/components/DemoBadge';
+import StatusBadge from '@/components/features/orders/StatusBadge';
+import DemoBadge from '@/components/shared/DemoBadge';
 import Card from '@/components/ui/Card';
 
 type StatusFilter = 'all' | Order['status'];
@@ -50,8 +50,8 @@ export default function OrdersPage() {
   return (
     <>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-2">Orders</h1>
-        <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] mb-4">
+        <h1 className="text-3xl font-bold text-text-primary dark:text-text-primary-dark mb-2">Orders</h1>
+        <p className="text-text-secondary dark:text-text-secondary-dark mb-4">
           Select an order to reorder items or view details
         </p>
         <DemoBadge />
@@ -61,7 +61,7 @@ export default function OrdersPage() {
       <Card className="mb-6" padding="md">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="search" className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2 dark:text-[var(--color-text-primary-dark)]">
+            <label htmlFor="search" className="block text-sm font-semibold text-text-primary mb-2 dark:text-text-primary-dark">
               Search Orders
             </label>
             <Input
@@ -73,14 +73,14 @@ export default function OrdersPage() {
             />
           </div>
           <div>
-            <label htmlFor="status-filter" className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2 dark:text-[var(--color-text-primary-dark)]">
+            <label htmlFor="status-filter" className="block text-sm font-semibold text-text-primary mb-2 dark:text-text-primary-dark">
               Filter by Status
             </label>
             <select
               id="status-filter"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as StatusFilter)}
-              className="w-full px-4 py-2.5 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-primary-dark)] transition-colors hover:border-[var(--color-border)] dark:hover:border-[var(--color-border-dark)]"
+              className="w-full px-4 py-2.5 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 border-border dark:border-border-dark bg-surface dark:bg-surface-dark dark:text-text-primary-dark transition-colors hover:border-border dark:hover:border-border-dark"
             >
               <option value="all">All Statuses</option>
               <option value="processing">Processing</option>
@@ -127,16 +127,16 @@ export default function OrdersPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <p className="text-lg font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{order.poNumber}</p>
+                      <p className="text-lg font-bold text-text-primary dark:text-text-primary-dark">{order.poNumber}</p>
                       <StatusBadge status={order.status} />
                     </div>
-                    <p className="text-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+                    <p className="text-sm text-text-secondary dark:text-text-secondary-dark">
                       {formatDate(order.date, 'long')} • {order.items.length} item{order.items.length !== 1 ? 's' : ''}
                     </p>
                   </div>
                   <div className="text-right ml-4">
-                    <p className="text-lg font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{formatCurrency(order.total)}</p>
-                    <p className="text-xs text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] mt-1">View details →</p>
+                    <p className="text-lg font-bold text-text-primary dark:text-text-primary-dark">{formatCurrency(order.total)}</p>
+                    <p className="text-xs text-text-secondary dark:text-text-secondary-dark mt-1">View details →</p>
                   </div>
                 </div>
               </Card>
