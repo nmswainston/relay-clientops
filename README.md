@@ -2,59 +2,54 @@
 
 A client operations dashboard for managing accounts, communications, and workflows.
 
-## Overview
+## Problem
 
-Relay is a client-ops tool designed to centralize the operational side of client management. Built with Next.js for a fast, full-stack experience — the app layer handles routing and API routes, with a component library for common UI patterns.
+Freelancers and agencies juggle client info across emails, spreadsheets, and disconnected tools. There's no single view of what's happening across all client accounts at once.
+
+## Solution
+
+Relay centralizes client operations into one dashboard — accounts, active work, and communications in a single Next.js app with a clean, fast interface built for daily use.
+
+## Screenshots
+
+> *Add 2–4 screenshots here*
 
 ## Tech Stack
 
 - TypeScript
 - Next.js
 - Tailwind CSS
-- Netlify (deployment)
+- Netlify
 
-## Getting Started
+## Features
 
-### Prerequisites
+- Centralized client account management
+- Communication and task tracking per client
+- Next.js App Router with fast server-side rendering
+- Reusable component library for consistent UI
+- Custom hooks for shared logic
+- Netlify deployment
 
-- Node.js 18+
-- npm
-
-### Installation
+## Installation
 
 ```bash
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Build
+## Lessons Learned
 
-```bash
-npm run build
-```
+- Next.js App Router changes how you think about data fetching — co-locating fetch with the component that needs it simplifies the architecture
+- Building for operational efficiency means designing for repeated daily use, not just first impressions
+- Extracting shared logic into custom hooks keeps components clean and testable
 
-## Project Structure
+## Future Improvements
 
-```
-app/          # Next.js App Router pages and API routes
-components/   # Reusable UI components
-hooks/        # Custom React hooks
-lib/          # Utilities and helpers
-types/        # TypeScript type definitions
-public/       # Static assets
-styles/       # Global styles
-```
-
-## Deployment
-
-Configured for Netlify — see `netlify.toml`. Deploy by pushing to `main`.
+- CRM integrations (HubSpot, Pipedrive)
+- Automated client status reports
+- Time tracking per client
 
 ---
 
