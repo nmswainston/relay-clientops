@@ -12,7 +12,7 @@ Relay centralizes client operations into one dashboard — accounts, active work
 
 ## Screenshots
 
-> *Add 2–4 screenshots here*
+<!-- Add 2–4 screenshots of the app here -->
 
 ## Tech Stack
 
@@ -41,7 +41,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Lessons Learned
 
-- Next.js App Router changes how you think about data fetching — co-locating fetch with the component that needs it simplifies the architecture
+- Next.js App Router changes how you think about data fetching — co-locating fetch logic with the component that needs it simplifies state management significantly
 - Building for operational efficiency means designing for repeated daily use, not just first impressions
 - Extracting shared logic into custom hooks keeps components clean and testable
 
